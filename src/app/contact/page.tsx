@@ -4,7 +4,7 @@ import React from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
-import { Phone, Mail, Clock, ArrowRight, Send, CheckCircle } from "lucide-react"
+import { Phone, ArrowRight, Send, CheckCircle } from "lucide-react"
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = React.useState(false)
@@ -77,8 +77,19 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Grid */}
-      <section className="relative py-14 sm:py-20 lg:py-28 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
-        <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-14 sm:py-20 lg:py-28 overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/download_xuc0pn.jpg')",
+          }}
+        />
+        {/* Dark overlays - dimmed like footer */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/95 via-[#0f1522]/90 to-[#0b1120]/95" />
+        <div className="absolute inset-0 bg-black/40" />
+
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-2">
             {/* Contact Form */}
             <motion.div
@@ -111,53 +122,56 @@ export default function ContactPage() {
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="mt-5 sm:mt-8 space-y-3.5 sm:space-y-5 w-full">
-                  <div className="grid gap-3.5 sm:gap-5 grid-cols-1 sm:grid-cols-2 w-full">
+                <form onSubmit={handleSubmit} className="mt-5 sm:mt-8 space-y-4 sm:space-y-6 w-full">
+                  <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 w-full">
                     <div className="w-full">
-                      <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-white mb-1">
+                      <label htmlFor="name" className="block text-sm sm:text-base font-medium text-white mb-1.5">
                         Full Name <span className="text-red-400">*</span>
                       </label>
                       <input
                         id="name"
                         type="text"
                         required
-                        placeholder="Your full name"
-                        className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.06] px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm"
+                        placeholder="Enter your full name"
+                        className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08]"
+                        autoComplete="name"
                       />
                     </div>
                     <div className="w-full">
-                      <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-white mb-1">
+                      <label htmlFor="email" className="block text-sm sm:text-base font-medium text-white mb-1.5">
                         Email Address <span className="text-red-400">*</span>
                       </label>
                       <input
                         id="email"
                         type="email"
                         required
-                        placeholder="your@email.com"
-                        className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.06] px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm"
+                        placeholder="Enter your email address"
+                        className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08]"
+                        autoComplete="email"
                       />
                     </div>
                   </div>
 
                   <div className="w-full">
-                    <label htmlFor="company" className="block text-xs sm:text-sm font-medium text-white mb-1">
-                      Company Name
+                    <label htmlFor="company" className="block text-sm sm:text-base font-medium text-white mb-1.5">
+                      Company Name <span className="text-white/30 font-normal">(optional)</span>
                     </label>
                     <input
                       id="company"
                       type="text"
-                      placeholder="Your company"
-                      className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.06] px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm"
+                      placeholder="Enter your company name"
+                      className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08]"
+                      autoComplete="organization"
                     />
                   </div>
 
                   <div className="w-full">
-                    <label htmlFor="service" className="block text-xs sm:text-sm font-medium text-white mb-1">
+                    <label htmlFor="service" className="block text-sm sm:text-base font-medium text-white mb-1.5">
                       Service Interested In
                     </label>
                     <select
                       id="service"
-                      className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.06] px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm shadow-sm text-white focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm"
+                      className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08]"
                     >
                       <option value="" className="bg-slate-900">Select a service...</option>
                       <option value="incorporation" className="bg-slate-900">Company Incorporation</option>
@@ -170,102 +184,48 @@ export default function ContactPage() {
                   </div>
 
                   <div className="w-full">
-                    <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-white mb-1">
+                    <label htmlFor="message" className="block text-sm sm:text-base font-medium text-white mb-1.5">
                       Message <span className="text-red-400">*</span>
                     </label>
                     <textarea
                       id="message"
                       required
-                      rows={4}
+                      rows={5}
                       placeholder="Tell us about your project and how we can help..."
-                      className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.06] px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm resize-y"
+                      className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08] resize-y min-h-[130px]"
                     />
                   </div>
 
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full gap-2 bg-gradient-to-b from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white text-sm sm:text-base py-3 sm:py-3.5 shadow-lg shadow-sky-500/20"
+                    className="w-full gap-2.5 bg-gradient-to-b from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white text-sm sm:text-base py-3.5 sm:py-4 shadow-lg shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/30 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
                   >
-                    <Send className="size-3.5 sm:size-4 shrink-0" />
+                    <Send className="size-4 sm:size-4.5 shrink-0" />
                     <span>Send Message</span>
                   </Button>
                 </form>
               )}
             </motion.div>
 
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="w-full max-w-full"
-            >
-              <div>
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">Contact Information</h2>
-                <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-white/50">
-                  Reach out through any of the channels below.
-                </p>
-              </div>
-
-              <div className="mt-5 sm:mt-8 space-y-4 sm:space-y-6">
-                {/* Phone */}
-                <div className="flex gap-3 sm:gap-4 group items-start">
-                  <div className="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 group-hover:border-sky-400/30 transition-colors">
-                    <Phone className="size-4 sm:size-5 text-sky-300" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-sm sm:text-base text-white">Phone</h3>
-                    <div className="mt-0.5 sm:mt-1 space-y-0.5 sm:space-y-0">
-                      <a href="tel:+6285216412782" className="block text-xs sm:text-sm text-white/50 transition-colors hover:text-white/80 break-all">
-                        +62 852 1641 2782 <span className="text-white/20">(Primary)</span>
-                      </a>
-                      <a href="tel:+6283161698888" className="block text-xs sm:text-sm text-white/50 transition-colors hover:text-white/80 break-all">
-                        +62 831 6169 8888
-                      </a>
-                      <a href="tel:+6285691569538" className="block text-xs sm:text-sm text-white/50 transition-colors hover:text-white/80 break-all">
-                        +62 856 9156 9538
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex gap-3 sm:gap-4 group items-start">
-                  <div className="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 group-hover:border-sky-400/30 transition-colors">
-                    <Mail className="size-4 sm:size-5 text-sky-300" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-sm sm:text-base text-white">Email</h3>
-                    <a href="mailto:support@ptssni.id" className="mt-0.5 sm:mt-1 block text-xs sm:text-sm text-white/50 transition-colors hover:text-white/80 break-all">
-                      support@ptssni.id
-                    </a>
-                  </div>
-                </div>
-
-                {/* Hours */}
-                <div className="flex gap-3 sm:gap-4 group items-start">
-                  <div className="flex size-10 sm:size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 group-hover:border-sky-400/30 transition-colors">
-                    <Clock className="size-4 sm:size-5 text-sky-300" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-sm sm:text-base text-white">Business Hours</h3>
-                    <div className="mt-0.5 sm:mt-1 space-y-0.5">
-                      <p className="text-xs sm:text-sm text-white/50">Mon-Fri: 8:00 AM - 5:00 PM WIB</p>
-                      <p className="text-xs sm:text-sm text-white/50">Sat: 8:00 AM - 1:00 PM WIB</p>
-                      <p className="text-xs sm:text-sm text-white/50">Sun: Closed</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Quick CTA */}
-      <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]">
-        <div className="relative mx-auto w-full max-w-3xl px-4 sm:px-6 text-center lg:px-8">
+      <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/Kelly_Talking_to_herself_gvknz9.jpg')",
+          }}
+        />
+        {/* Dark overlays - dimmed like footer */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/95 via-[#0f1522]/90 to-[#080b14]/95" />
+        <div className="absolute inset-0 bg-black/40" />
+
+        <div className="relative z-10 mx-auto w-full max-w-3xl px-4 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
