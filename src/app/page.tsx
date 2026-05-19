@@ -166,8 +166,23 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Section - static gradient background, no video */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-[#0b1120]">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Cloudinary background video - fully non-interactive */}
+        <div className="absolute inset-0 pointer-events-none select-none">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            className="size-full object-cover"
+            src="https://res.cloudinary.com/dahp1ngcc/video/upload/v1779166538/From_KlickPin_CF_24_Spa_Night_Ideas_for_Busy_People_-_Pin-497718196346879930_wjcktl.mp4"
+          />
+          {/* Dark overlays for blending */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/70 to-slate-950/90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/90 via-transparent to-slate-950/50" />
+        </div>
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 mt-26 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-white/90 shadow-lg shadow-black/10">
