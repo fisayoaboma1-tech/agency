@@ -18,6 +18,7 @@ import {
   Zap,
   Target,
   BarChart3,
+  BookHeart,
 } from "lucide-react"
 
 const services = [
@@ -111,11 +112,25 @@ const faqs = [
 
 export default function HomePage() {
   const [showLoader, setShowLoader] = React.useState(true)
+  const [slideIndex, setSlideIndex] = React.useState(0)
 
   React.useEffect(() => {
     const timer = setTimeout(() => setShowLoader(false), 3000)
     return () => clearTimeout(timer)
   }, [])
+
+  // Image slideshow for contact section
+  const contactImages = [
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/Kelly_Talking_to_herself_gvknz9.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/download_xuc0pn.jpg",
+  ]
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setSlideIndex((prev) => (prev + 1) % contactImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [contactImages.length])
 
   if (showLoader) {
     return (
@@ -278,10 +293,14 @@ export default function HomePage() {
       <section className="py-24 lg:py-32 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6">
-              <Sparkles className="size-3.5" />
-              Our Services
-            </span>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-px w-8 bg-blue-500/70" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white">
+                <BookHeart className="size-3.5" />
+                Our Services
+              </span>
+              <div className="h-px w-8 bg-blue-500/70" />
+            </div>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Comprehensive Market Entry Solutions
             </h2>
@@ -482,27 +501,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-28 lg:py-36 overflow-hidden bg-gradient-to-br from-slate-800 via-[#0f172a] to-black">
-        <div className="mx-auto max-w-4xl px-4 text-center lg:px-8">
+      {/* Get in Touch / Contact Us Section */}
+      <section className="relative py-28 lg:py-36 overflow-hidden">
+        {/* Slideshow background images */}
+        <div className="absolute inset-0 pointer-events-none select-none">
+          {contactImages.map((src, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                i === slideIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={src}
+                alt=""
+                className="size-full object-cover"
+                aria-hidden="true"
+              />
+            </div>
+          ))}
+          {/* Gradient overlays for blending */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-[#0b1120]/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/60 via-transparent to-[#0b1120]/80" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center lg:px-8">
           <div className="mb-10 flex items-center justify-center gap-4">
             <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-xs font-medium tracking-wider uppercase text-white/50">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-5 py-2 text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
               <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
-              Take the Next Step
+              Get in Touch
             </span>
             <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
           </div>
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
-            Ready to Expand into
-            <br />
             <span className="bg-gradient-to-r from-sky-200 via-white to-sky-100 bg-clip-text text-transparent">
-              Indonesia?
+              Contact Us
             </span>
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-white/40 font-light tracking-wide">
-            Let's discuss your market entry strategy. Schedule a free consultation
-            with our team today and take the first step toward your success.
+          <p className="mx-auto mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-white/70 font-light tracking-wide drop-shadow-md">
+            Ready to expand your business into Indonesia? Get in touch with our team for a free consultation. We typically respond within 24 hours.
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
@@ -518,7 +556,7 @@ export default function HomePage() {
               href="https://wa.me/6285216412782"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.04] px-9 py-4.5 text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300"
+              className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.08] px-9 py-4.5 text-base font-medium text-white/80 backdrop-blur-sm transition-all duration-300 shadow-lg shadow-black/20"
             >
               <div className="flex size-6 items-center justify-center rounded-full bg-white/10 transition-colors">
                 <Phone className="size-3.5" />
@@ -526,20 +564,20 @@ export default function HomePage() {
               Chat on WhatsApp
             </a>
           </div>
-          <div className="mt-12 flex items-center justify-center gap-6 text-xs text-white/20">
+          <div className="mt-12 flex items-center justify-center gap-6 text-xs text-white/50">
             <span className="flex items-center gap-1.5">
-              <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
+              <span className="flex size-1.5 rounded-full bg-emerald-400/70" />
               No commitment required
             </span>
-            <span className="w-px h-3 bg-white/10" />
+            <span className="w-px h-3 bg-white/20" />
             <span className="flex items-center gap-1.5">
-              <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
-              30-minute free consultation
+              <span className="flex size-1.5 rounded-full bg-emerald-400/70" />
+              Free consultation
             </span>
-            <span className="w-px h-3 bg-white/10" />
+            <span className="w-px h-3 bg-white/20" />
             <span className="flex items-center gap-1.5">
-              <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
-              We'll call you
+              <span className="flex size-1.5 rounded-full bg-emerald-400/70" />
+              24-hour response
             </span>
           </div>
         </div>

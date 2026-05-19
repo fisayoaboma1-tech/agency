@@ -88,24 +88,60 @@ const steps = [
 ]
 
 export default function ProcessPage() {
+  const [slideIndex, setSlideIndex] = React.useState(0)
+
+  const contactImages = [
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/Kelly_Talking_to_herself_gvknz9.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/download_xuc0pn.jpg",
+  ]
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setSlideIndex((prev) => (prev + 1) % contactImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [contactImages.length])
+
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-24 pb-16 sm:py-24 lg:py-28 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      <section className="relative pt-24 pb-16 sm:py-24 lg:py-28 overflow-hidden">
+        {/* Slideshow background images */}
+        <div className="absolute inset-0 pointer-events-none select-none">
+          {contactImages.map((src, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                i === slideIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={src}
+                alt=""
+                className="size-full object-cover"
+                aria-hidden="true"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-[#0b1120]/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/60 via-transparent to-[#0b1120]/80" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3.5 py-1 text-xs font-medium text-white mb-5 sm:mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
+              <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
               Our Process
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            <h1 className="mt-5 sm:mt-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
               Our <span className="bg-gradient-to-r from-sky-200 via-white to-sky-100 bg-clip-text text-transparent">Process</span>
             </h1>
-            <p className="mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed text-white/40 max-w-2xl mx-auto">
+            <p className="mt-4 sm:mt-5 text-xs sm:text-sm leading-relaxed text-white/40 max-w-2xl mx-auto">
               A structured, transparent approach to getting your business established
               and compliant in Indonesia. From consultation to ongoing support, we guide
               you every step of the way.
@@ -119,7 +155,7 @@ export default function ProcessPage() {
         <div className="relative mx-auto max-w-4xl px-5 sm:px-6 lg:px-8">
           <div className="relative">
             {/* Vertical line */}
-            <div className="hidden sm:block absolute left-8 top-0 h-full w-px bg-white/[0.06] md:left-12" />
+            <div className="hidden sm:block absolute left-8 top-0 h-full w-px bg-gradient-to-b from-sky-400/30 via-sky-400/10 to-transparent md:left-12" />
 
             <div className="space-y-10 sm:space-y-16">
               {steps.map((step, index) => (
@@ -132,36 +168,42 @@ export default function ProcessPage() {
                   className="relative sm:pl-20 md:pl-24"
                 >
                   {/* Circle on timeline */}
-                  <div className="hidden sm:flex absolute left-4 top-0 size-10 items-center justify-center rounded-full border-4 border-slate-900 bg-gradient-to-br from-white/20 to-white/10 text-sm font-bold text-white shadow-md md:left-6">
+                  <div className="hidden sm:flex absolute left-4 top-0 size-10 items-center justify-center rounded-full border-4 border-slate-900 bg-gradient-to-br from-sky-400/30 to-blue-500/20 text-sm font-bold text-sky-300 shadow-lg shadow-sky-400/10 md:left-6">
                     {step.number}
                   </div>
 
-                  <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-5 sm:p-6 lg:p-8 shadow-xl transition-all duration-500 hover:border-white/20">
+                  <div className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 sm:p-6 lg:p-8 shadow-xl transition-all duration-500 hover:border-white/20">
                     <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
                       <div className="w-full">
                         <div className="flex items-center gap-3">
-                          <span className="sm:hidden flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-white/20 to-white/10 border border-white/20 text-xs font-bold text-white">
+                          <span className="sm:hidden flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400/30 to-blue-500/20 border border-sky-400/20 text-xs font-bold text-sky-300">
                             {step.number}
                           </span>
-                          <step.icon className="size-5 sm:size-6 text-white/70 shrink-0" />
+                          <step.icon className="size-5 sm:size-6 text-sky-300 shrink-0" />
                           <h2 className="text-base sm:text-xl font-bold text-white">{step.title}</h2>
                         </div>
-                        <p className="mt-3 text-xs sm:text-sm lg:text-base text-white/40 leading-relaxed">
+                        <p className="mt-3 text-xs sm:text-sm lg:text-base text-white/50 leading-relaxed">
                           {step.description}
                         </p>
                       </div>
-                      <div className="shrink-0 rounded-full bg-white/10 border border-white/20 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-white/60 whitespace-nowrap ml-auto sm:ml-0">
+                      <div className="shrink-0 rounded-full bg-sky-400/10 border border-sky-400/20 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-sky-300 whitespace-nowrap ml-auto sm:ml-0">
                         {step.duration}
                       </div>
                     </div>
 
-                    <div className="mt-4 sm:mt-6 grid gap-1.5 sm:gap-2 grid-cols-1 sm:grid-cols-2">
-                      {step.details.map((detail) => (
-                        <div key={detail} className="flex items-start gap-2 text-xs sm:text-sm text-white/40">
-                          <CheckCircle className="mt-0.5 size-3.5 sm:size-4 shrink-0 text-white/60" />
-                          <span>{detail}</span>
-                        </div>
-                      ))}
+                    <div className="mt-4 sm:mt-6">
+                      <h3 className="font-semibold text-xs sm:text-sm text-sky-300 mb-3 flex items-center gap-2">
+                        <span className="flex size-1.5 rounded-full bg-sky-400" />
+                        Key Steps
+                      </h3>
+                      <div className="grid gap-1.5 sm:gap-2 grid-cols-1 sm:grid-cols-2">
+                        {step.details.map((detail) => (
+                          <div key={detail} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/50">
+                            <CheckCircle className="mt-0.5 size-4 sm:size-4.5 shrink-0 text-sky-400/80" />
+                            <span>{detail}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -209,13 +251,16 @@ export default function ProcessPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
                 transition={{ delay: 0.08 }}
-                className="rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-5 sm:p-6 shadow-xl transition-all duration-500 hover:border-white/20"
+                className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 sm:p-6 shadow-xl transition-all duration-500 hover:border-white/20"
               >
-                <h3 className="font-semibold text-sm sm:text-base text-white">{phase.title}</h3>
-                <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2">
+                <h3 className="font-semibold text-sm sm:text-base text-white flex items-center gap-2">
+                  <span className="flex size-2 rounded-full bg-sky-400" />
+                  {phase.title}
+                </h3>
+                <ul className="mt-3 sm:mt-4 space-y-2 sm:space-y-2.5">
                   {phase.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs sm:text-sm text-white/40">
-                      <CheckCircle className="mt-0.5 size-3.5 sm:size-4 shrink-0 text-white/60" />
+                    <li key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/50">
+                      <CheckCircle className="mt-0.5 size-4 sm:size-4.5 shrink-0 text-sky-400/80" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -227,7 +272,7 @@ export default function ProcessPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-16 sm:py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]">
+      <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]">
         <div className="relative mx-auto max-w-3xl px-5 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -235,24 +280,25 @@ export default function ProcessPage() {
             viewport={{ once: true, margin: "-50px" }}
             className="flex flex-col items-center"
           >
-            <div className="mb-6 sm:mb-8 flex items-center gap-3 sm:gap-4">
-              <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 sm:px-4 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-white/50 whitespace-nowrap">
+            <div className="mb-5 sm:mb-8 flex items-center gap-3 sm:gap-4">
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3.5 sm:px-4 py-1.5 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 whitespace-nowrap backdrop-blur-sm">
+                <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
                 Start Your Journey
               </span>
-              <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
               Start Your Journey Today
             </h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/60 max-w-xl mx-auto">
               Contact us for a free consultation and let's discuss how we can help
               your business succeed in Indonesia.
             </p>
             <div className="mt-8 sm:mt-10 flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row w-full sm:w-auto">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center gap-2.5 sm:gap-3 rounded-xl sm:rounded-2xl bg-gradient-to-b from-sky-500 to-sky-600 px-6 sm:px-9 py-3 sm:py-4 text-sm sm:text-base font-semibold text-white shadow-2xl shadow-sky-500/30 transition-all duration-300 hover:shadow-sky-500/40 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full sm:w-auto justify-center"
+                className="group relative inline-flex items-center gap-2.5 sm:gap-3 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-6 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full sm:w-auto justify-center"
               >
                 <span className="relative z-10">Book Free Consultation</span>
                 <span className="relative z-10 flex size-4 sm:size-5 items-center justify-center rounded-full bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
@@ -263,7 +309,7 @@ export default function ProcessPage() {
                 href="https://wa.me/6285216412782"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2.5 sm:gap-3 rounded-xl sm:rounded-2xl border border-white/15 bg-white/[0.04] px-6 sm:px-9 py-3 sm:py-4 text-sm sm:text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto justify-center"
+                className="group inline-flex items-center gap-2.5 sm:gap-3 rounded-xl border border-white/15 bg-white/[0.06] px-6 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto justify-center"
               >
                 <div className="flex size-5 sm:size-6 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-white/20">
                   <Phone className="size-3 sm:size-3.5" />
