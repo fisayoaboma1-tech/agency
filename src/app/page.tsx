@@ -1,9 +1,7 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence } from "motion/react"
 import {
   ArrowRight,
   CheckCircle,
@@ -88,70 +86,41 @@ const stats = [
   { value: "100%", label: "Compliance Guaranteed" },
 ]
 
-const rotatingMessages = [
-  "Company Licensing",
-  "SNI Product Certification",
-  "Import & Export Compliance",
-  "Work Permits & Immigration",
-  "Market Entry Strategy",
+const faqs = [
+  {
+    q: "How long does company registration in Indonesia take?",
+    a: "Typically 2-4 weeks for a standard PT (limited liability company) establishment. More complex structures may take 6-8 weeks.",
+  },
+  {
+    q: "What is SNI certification and is it mandatory?",
+    a: "SNI (Standar Nasional Indonesia) is mandatory certification for many products sold in Indonesia. We handle the full process from testing to issuance.",
+  },
+  {
+    q: "Can a foreigner fully own a company in Indonesia?",
+    a: "Yes, for many business sectors under the Positive Investment List. We'll advise on your specific case and help structure the entity accordingly.",
+  },
+  {
+    q: "What documents are needed to start the process?",
+    a: "Basic requirements include passport copies, company profile, business plan, and board of directors' information. We'll provide a complete checklist during consultation.",
+  },
+  {
+    q: "How much does it cost to set up a company in Indonesia?",
+    a: "Costs vary based on company type, sector, and complexity. Contact us for a tailored quote after our initial consultation.",
+  },
 ]
-
-const headlineSets = [
-  { line1: "SIMPLIFYING BUSINESS", line2: "EXPANSION INTO INDONESIA" },
-  { line1: "STREAMLINING OPERATIONS", line2: "GROWTH IN INDONESIA" },
-  { line1: "MAKING IT EASIER", line2: "MARKET ENTRY IN INDONESIA" },
-]
-
-const descriptionSets = [
-  "End-to-end support for foreign companies entering the Indonesian market. From company incorporation and licensing to SNI certification and import/export compliance — we handle the complexity so you can focus on growth.",
-  "Complete assistance for international businesses entering the Indonesian market. From company registration and permits to SNI certification and trade compliance — we manage every step so you can grow.",
-  "Full-service guidance for foreign companies expanding into Indonesia. From incorporation and licensing to product certification and customs compliance — we simplify everything so you can scale.",
-]
-
-const fadeVariants = {
-  enter: { opacity: 0, y: 8 },
-  center: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -8 },
-}
 
 export default function HomePage() {
   const [showLoader, setShowLoader] = React.useState(true)
-  const [currentIndex, setCurrentIndex] = React.useState(0)
-  const [fade, setFade] = React.useState(true)
-  const [headlineIndex, setHeadlineIndex] = React.useState(0)
 
   React.useEffect(() => {
     const timer = setTimeout(() => setShowLoader(false), 3000)
     return () => clearTimeout(timer)
   }, [])
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (document.documentElement.getAttribute("data-menu-open") === "true") return
-      setFade(false)
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % rotatingMessages.length)
-        setFade(true)
-      }, 300)
-    }, 3500)
-    return () => clearInterval(interval)
-  }, [])
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      if (document.documentElement.getAttribute("data-menu-open") === "true") return
-      setHeadlineIndex((prev) => (prev + 1) % headlineSets.length)
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [])
-
   if (showLoader) {
     return (
       <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-950 to-[#0b1120]">
-        {/* Subtle radial glow behind loader */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-72 rounded-full bg-sky-500/10 blur-3xl pointer-events-none" />
-
-        {/* Company branding */}
         <div className="relative mb-12 flex flex-col items-center gap-3">
           <div className="flex items-center gap-3">
             <div className="size-10 rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/20 border border-sky-400/30 flex items-center justify-center shadow-lg shadow-sky-500/10">
@@ -165,13 +134,8 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* The loader */}
         <div className="loader mb-8" />
-
-        {/* Indonesian flag + Memuat text with animated dots */}
         <div className="flex items-center gap-3">
-          {/* Indonesian Flag */}
           <div className="flex flex-col size-7 shrink-0 rounded-sm shadow-lg shadow-black/30 overflow-hidden ring-1 ring-white/10">
             <div className="h-1/2 bg-red-600" />
             <div className="h-1/2 bg-white" />
@@ -187,13 +151,9 @@ export default function HomePage() {
             </span>
           </div>
         </div>
-
-        {/* Tagline */}
         <p className="mt-6 text-xs text-white/20 tracking-wider text-center max-w-[200px] leading-relaxed">
           Mitra terpercaya Anda untuk masuk pasar Indonesia
         </p>
-
-        {/* Refresh indicator */}
         <div className="absolute bottom-12 flex items-center gap-2 text-[10px] tracking-widest uppercase text-white/10">
           <svg className="size-3 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
@@ -206,88 +166,52 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Video Background - pointer-events-none prevents blocking clicks */}
-        <div className="absolute inset-0 pointer-events-none">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            className="size-full object-cover"
-            src="/hero-video.mp4"
-            poster="/hero-poster.jpg"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/60 to-slate-950/80" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30" />
-        </div>
-
-        {/* Subtle orbs - also non-interactive */}
-        <div className="pointer-events-none absolute -top-40 -right-40 size-96 rounded-full bg-white/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-40 -left-40 size-96 rounded-full bg-white/5 blur-3xl" />
-
+      {/* Hero Section - static gradient background, no video */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-[#0b1120]">
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 mt-26 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            {/* Premium badge */}
-            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-white/90 backdrop-blur-md shadow-lg shadow-black/10">
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-white/90 shadow-lg shadow-black/10">
               <span className="flex size-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50" />
               <span>Trusted by 50+ international companies</span>
             </div>
-
-            {/* Main heading */}
             <h1 className="relative text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
-              <span className="block">
-                {headlineSets[headlineIndex].line1}
-              </span>
+              <span className="block">SIMPLIFYING BUSINESS</span>
               <div className="h-2" />
               <span className="relative block">
                 <span className="relative z-10 bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent">
-                  {headlineSets[headlineIndex].line2}
+                  EXPANSION INTO INDONESIA
                 </span>
-                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 w-3/4 rounded-full bg-gradient-to-r from-white/0 via-white/40 to-white/0" />
               </span>
             </h1>
-
-            {/* Rotating service tag */}
             <div className="mt-8 flex items-center justify-center">
-              <div className="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 sm:px-6 sm:py-2 backdrop-blur-md shadow-inner shadow-white/5">
+              <div className="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 sm:px-6 sm:py-2 shadow-inner shadow-white/5">
                 <span className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/70">
                   <span className="text-white/70 font-medium">Specializing in</span>
                   <span className="text-white/30">|</span>
-                  <span
-                    className={`font-medium text-white transition-opacity duration-300 ${fade ? "opacity-100" : "opacity-0"}`}
-                  >
-                    {rotatingMessages[currentIndex]}
-                  </span>
+                  <span className="font-medium text-white">Market Entry Strategy</span>
                 </span>
               </div>
             </div>
-
-            {/* Description */}
             <div className="relative mx-auto mt-10 max-w-2xl">
               <div className="absolute -top-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/70 font-light tracking-wide">
-                {descriptionSets[headlineIndex]}
+                End-to-end support for foreign companies entering the Indonesian market. From company incorporation and licensing to SNI certification and import/export compliance — we handle the complexity so you can focus on growth.
               </p>
               <div className="absolute -bottom-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
             </div>
-
-            {/* CTA Buttons */}
             <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-b from-slate-700 to-slate-900 px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-black/30 transition-all duration-300 hover:shadow-black/40 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
+                className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-b from-slate-700 to-slate-900 px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-black/30 transition-all duration-300 hover:shadow-black/40 active:translate-y-0 overflow-hidden"
               >
                 <span className="relative z-10">Book a Consultation</span>
-                <span className="relative z-10 flex size-6 items-center justify-center rounded-full bg-black/20 text-white transition-all duration-300 group-hover:scale-110">
-                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                <span className="relative z-10 flex size-6 items-center justify-center rounded-full bg-black/20 text-white transition-all duration-300">
+                  <ArrowRight className="size-3.5" />
                 </span>
               </Link>
               <a
                 href="tel:+6285216412782"
-                className="group inline-flex items-center gap-3 rounded-xl border border-white/20 px-8 py-4 text-base font-medium text-white/90 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:text-white hover:-translate-y-0.5 active:translate-y-0"
+                className="group inline-flex items-center gap-3 rounded-xl border border-white/20 px-8 py-4 text-base font-medium text-white/90 transition-all duration-300 active:translate-y-0"
               >
                 <span className="relative flex size-3">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
@@ -296,14 +220,7 @@ export default function HomePage() {
                 Call +62 852 1641 2782
               </a>
             </div>
-
-            {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-16 flex items-center justify-center gap-8 sm:gap-12 text-white/30 text-xs tracking-widest uppercase"
-            >
+            <div className="mt-16 flex items-center justify-center gap-8 sm:gap-12 text-white/30 text-xs tracking-widest uppercase">
               <span className="flex items-center gap-2">
                 <Building2 className="size-3.5" />
                 PT PMA
@@ -320,49 +237,32 @@ export default function HomePage() {
                 <FileCheck className="size-3.5" />
                 BKPM
               </span>
-            </motion.div>
+            </div>
           </div>
         </div>
-
-        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0b1120] to-transparent" />
       </section>
 
       {/* Stats Bar */}
-      <section className="relative border-y border-white/10 bg-gradient-to-br from-[#0b1120] via-[#111827] to-[#0b1120] overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:32px_32px]" />
-        <div className="relative mx-auto max-w-7xl px-4 py-12 lg:px-8">
+      <section className="border-y border-white/10 bg-gradient-to-br from-[#0b1120] via-[#111827] to-[#0b1120] overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="text-center group"
-              >
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
                 <div className="text-4xl font-bold bg-gradient-to-b from-white to-slate-300 bg-clip-text text-transparent">
                   {stat.value}
                 </div>
-                <div className="mt-2 text-sm text-white/40 group-hover:text-white/60 transition-colors">
-                  {stat.label}
-                </div>
-              </motion.div>
+                <div className="mt-2 text-sm text-white/40">{stat.label}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Services Overview */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="mx-auto max-w-2xl text-center"
-          >
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6">
               <Sparkles className="size-3.5" />
               Our Services
@@ -371,56 +271,49 @@ export default function HomePage() {
               Comprehensive Market Entry Solutions
             </h2>
             <p className="mt-4 text-lg text-white/40">
-              Everything you need to establish and grow your business in Indonesia —
-              all under one roof.
+              Everything you need to establish and grow your business in Indonesia — all under one roof.
             </p>
-          </motion.div>
+          </div>
           <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-7 shadow-xl shadow-black/20 transition-all duration-500 hover:border-white/30 hover:from-white/[0.07] hover:to-white/[0.02] hover:-translate-y-1"
-              >
-                <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-white/20 to-white/10 border border-white/20 group-hover:border-white/30 transition-colors">
-                  <service.icon className="size-6 text-white/70" />
-                </div>
-                <h3 className="text-lg font-semibold text-white">{service.title}</h3>
-                <p className="mt-2 text-sm text-white/40 leading-relaxed">
-                  {service.description}
-                </p>
-                <ul className="mt-5 space-y-2.5 border-t border-white/[0.06] pt-5">
-                  {service.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-white/40">
-                      <CheckCircle className="mt-0.5 size-4 shrink-0 text-white/60" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={service.href}
-                  className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-white/70 hover:text-white transition-colors group/link"
+            {services.map((service) => {
+              const Icon = service.icon
+              return (
+                <div
+                  key={service.title}
+                  className="group relative rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-7 shadow-xl shadow-black/20 transition-all duration-500 hover:border-white/30 hover:from-white/[0.07] hover:to-white/[0.02]"
                 >
-                  Learn more <ChevronRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5" />
-                </Link>
-              </motion.div>
-            ))}
+                  <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-white/20 to-white/10 border border-white/20 group-hover:border-white/30 transition-colors">
+                    <Icon className="size-6 text-white/70" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white">{service.title}</h3>
+                  <p className="mt-2 text-sm text-white/40 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <ul className="mt-5 space-y-2.5 border-t border-white/[0.06] pt-5">
+                    {service.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-white/40">
+                        <CheckCircle className="mt-0.5 size-4 shrink-0 text-white/60" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={service.href}
+                    className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-white/70 hover:text-white transition-colors"
+                  >
+                    Learn more <ChevronRight className="size-3.5" />
+                  </Link>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="mx-auto max-w-2xl text-center mb-16"
-          >
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center mb-16">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6">
               <Target className="size-3.5" />
               Why Choose Us
@@ -429,61 +322,36 @@ export default function HomePage() {
               Why Companies Trust SSNI
             </h2>
             <p className="mt-4 text-lg text-white/40">
-              We combine deep knowledge of Indonesia's regulatory environment
-              with practical execution to deliver results.
+              We combine deep knowledge of Indonesia's regulatory environment with practical execution to deliver results.
             </p>
-          </motion.div>
+          </div>
           <div className="grid items-start gap-12 lg:grid-cols-2">
-            {/* Left: Trust features */}
             <div className="space-y-6">
               {[
-                {
-                  title: "Regulatory Expertise",
-                  desc: "Deep understanding of Indonesian laws, BKPM requirements, and SNI standards.",
-                  icon: ShieldCheck,
-                },
-                {
-                  title: "One-Stop Partnership",
-                  desc: "From company setup to product certification — no need to juggle multiple vendors.",
-                  icon: Zap,
-                },
-                {
-                  title: "Proven Track Record",
-                  desc: "50+ international companies successfully established in Indonesia.",
-                  icon: BarChart3,
-                },
-                {
-                  title: "Ongoing Support",
-                  desc: "We don't just set you up; we stay with you for compliance and renewals.",
-                  icon: Users,
-                },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-30px" }}
-                  transition={{ delay: i * 0.1 }}
-                  className="group flex gap-4 rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-5 shadow-xl transition-all duration-500 hover:border-white/30 hover:from-white/[0.07] hover:-translate-y-0.5"
-                >
-                  <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-white/20 to-white/10 border border-white/20 group-hover:border-white/30 transition-colors">
-                    <item.icon className="size-6 text-white/70" />
+                { title: "Regulatory Expertise", desc: "Deep understanding of Indonesian laws, BKPM requirements, and SNI standards.", icon: ShieldCheck },
+                { title: "One-Stop Partnership", desc: "From company setup to product certification — no need to juggle multiple vendors.", icon: Zap },
+                { title: "Proven Track Record", desc: "50+ international companies successfully established in Indonesia.", icon: BarChart3 },
+                { title: "Ongoing Support", desc: "We don't just set you up; we stay with you for compliance and renewals.", icon: Users },
+              ].map((item) => {
+                const Icon = item.icon
+                return (
+                  <div
+                    key={item.title}
+                    className="group flex gap-4 rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-5 shadow-xl transition-all duration-500 hover:border-white/30 hover:from-white/[0.07]"
+                  >
+                    <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-white/20 to-white/10 border border-white/20 group-hover:border-white/30 transition-colors">
+                      <Icon className="size-6 text-white/70" />
+                    </div>
+                    <div className="pt-1">
+                      <h3 className="font-semibold text-white">{item.title}</h3>
+                      <p className="mt-1 text-sm text-white/40 leading-relaxed">{item.desc}</p>
+                    </div>
                   </div>
-                  <div className="pt-1">
-                    <h3 className="font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-sm text-white/40 leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+                )
+              })}
             </div>
-
-            {/* Right: Our Service Process */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent backdrop-blur-xl p-8 shadow-xl transition-all duration-500 hover:border-white/20">
+            <div>
+              <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-8 shadow-xl transition-all duration-500 hover:border-white/20">
                 <h3 className="text-xl font-semibold text-white">Our Service Process</h3>
                 <div className="mt-6 space-y-6">
                   {[
@@ -491,15 +359,8 @@ export default function HomePage() {
                     { step: "02", title: "Document Collection", desc: "You submit documents; we review and prepare filings." },
                     { step: "03", title: "Application & Processing", desc: "We handle all submissions with Indonesian authorities." },
                     { step: "04", title: "Approval & Support", desc: "Certification issued, with ongoing compliance support." },
-                  ].map((item, i) => (
-                    <motion.div
-                      key={item.step}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-20px" }}
-                      transition={{ delay: i * 0.1 }}
-                      className="flex gap-4"
-                    >
+                  ].map((item) => (
+                    <div key={item.step} className="flex gap-4">
                       <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-white/20 to-white/10 border border-white/20 font-bold text-white text-sm shadow-md">
                         {item.step}
                       </div>
@@ -507,35 +368,30 @@ export default function HomePage() {
                         <h4 className="font-medium text-white">{item.title}</h4>
                         <p className="text-sm text-white/40">{item.desc}</p>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
                 <div className="mt-8">
                   <Link
                     href="/process"
-                    className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-slate-700 to-slate-900 px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-black/30 transition-all duration-300 hover:shadow-black/40 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
+                    className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-slate-700 to-slate-900 px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-black/30 transition-all duration-300 overflow-hidden"
                   >
                     <span className="relative z-10">View Full Process</span>
-                    <span className="relative z-10 flex size-5 items-center justify-center rounded-full bg-black/20 transition-all duration-300 group-hover:scale-110">
+                    <span className="relative z-10 flex size-5 items-center justify-center rounded-full bg-black/20 transition-all duration-300">
                       <ChevronRight className="size-3.5" />
                     </span>
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="mx-auto max-w-2xl text-center"
-          >
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6">
               <Quote className="size-3.5" />
               Testimonials
@@ -546,16 +402,12 @@ export default function HomePage() {
             <p className="mt-4 text-lg text-white/40">
               Feedback from international companies we've helped enter the Indonesian market.
             </p>
-          </motion.div>
+          </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <motion.div
+            {testimonials.map((t) => (
+              <div
                 key={t.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="group relative rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-7 shadow-xl transition-all duration-500 hover:border-white/30 hover:from-white/[0.07] hover:-translate-y-1"
+                className="group relative rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-7 shadow-xl transition-all duration-500 hover:border-white/30 hover:from-white/[0.07]"
               >
                 <Quote className="size-8 text-white/20 mb-4" />
                 <div className="flex gap-1 mb-4">
@@ -568,21 +420,16 @@ export default function HomePage() {
                   <div className="font-semibold text-sm text-white">{t.name}</div>
                   <div className="text-xs text-white/30">{t.role}</div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
-        <div className="relative mx-auto max-w-3xl px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="mx-auto max-w-2xl text-center"
-          >
+      <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="mx-auto max-w-3xl px-4 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6">
               FAQ
             </span>
@@ -592,37 +439,12 @@ export default function HomePage() {
             <p className="mt-4 text-lg text-white/40">
               Common questions about setting up a business in Indonesia.
             </p>
-          </motion.div>
+          </div>
           <div className="mt-12 space-y-4">
-            {[
-              {
-                q: "How long does company registration in Indonesia take?",
-                a: "Typically 2-4 weeks for a standard PT (limited liability company) establishment. More complex structures may take 6-8 weeks.",
-              },
-              {
-                q: "What is SNI certification and is it mandatory?",
-                a: "SNI (Standar Nasional Indonesia) is mandatory certification for many products sold in Indonesia. We handle the full process from testing to issuance.",
-              },
-              {
-                q: "Can a foreigner fully own a company in Indonesia?",
-                a: "Yes, for many business sectors under the Positive Investment List. We'll advise on your specific case and help structure the entity accordingly.",
-              },
-              {
-                q: "What documents are needed to start the process?",
-                a: "Basic requirements include passport copies, company profile, business plan, and board of directors' information. We'll provide a complete checklist during consultation.",
-              },
-              {
-                q: "How much does it cost to set up a company in Indonesia?",
-                a: "Costs vary based on company type, sector, and complexity. Contact us for a tailored quote after our initial consultation.",
-              },
-            ].map((faq, i) => (
-              <motion.details
+            {faqs.map((faq, i) => (
+              <details
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{ delay: i * 0.05 }}
-                className="group rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent backdrop-blur-sm shadow-xl transition-all duration-300 [&[open]]:border-white/20 hover:border-white/30"
+                className="group rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent shadow-xl transition-all duration-300 [&[open]]:border-white/20 hover:border-white/30"
               >
                 <summary className="flex cursor-pointer items-center justify-between p-5 font-medium text-white">
                   <span>{faq.q}</span>
@@ -631,103 +453,80 @@ export default function HomePage() {
                 <div className="border-t border-white/[0.06] px-5 pb-5 pt-3">
                   <p className="text-sm text-white/40 leading-relaxed">{faq.a}</p>
                 </div>
-              </motion.details>
+              </details>
             ))}
           </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-10 text-center"
-          >
+          <div className="mt-10 text-center">
             <p className="text-sm text-white/40">
               Still have questions?{" "}
               <Link href="/contact" className="font-medium text-white/60 hover:text-white hover:underline">
                 Contact us
               </Link>
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-28 lg:py-36 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-[#0f172a] to-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)]" />
-        <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7 }}
-          >
-            {/* Premium badge */}
-            <div className="mb-10 flex items-center justify-center gap-4">
-              <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-xs font-medium tracking-wider uppercase text-white/50">
-                <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
-                Take the Next Step
+      <section className="py-28 lg:py-36 overflow-hidden bg-gradient-to-br from-slate-800 via-[#0f172a] to-black">
+        <div className="mx-auto max-w-4xl px-4 text-center lg:px-8">
+          <div className="mb-10 flex items-center justify-center gap-4">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-xs font-medium tracking-wider uppercase text-white/50">
+              <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
+              Take the Next Step
+            </span>
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
+          </div>
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
+            Ready to Expand into
+            <br />
+            <span className="bg-gradient-to-r from-sky-200 via-white to-sky-100 bg-clip-text text-transparent">
+              Indonesia?
+            </span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-white/40 font-light tracking-wide">
+            Let's discuss your market entry strategy. Schedule a free consultation
+            with our team today and take the first step toward your success.
+          </p>
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/contact"
+              className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-to-b from-sky-500 to-sky-600 px-9 py-4.5 text-base font-semibold text-white shadow-2xl shadow-sky-500/30 transition-all duration-300 overflow-hidden"
+            >
+              <span className="relative z-10">Book Free Consultation</span>
+              <span className="relative z-10 flex size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300">
+                <ArrowRight className="size-3.5" />
               </span>
-              <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
-            </div>
-
-            {/* Heading */}
-            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
-              Ready to Expand into
-              <br />
-              <span className="bg-gradient-to-r from-sky-200 via-white to-sky-100 bg-clip-text text-transparent">
-                Indonesia?
-              </span>
-            </h2>
-
-            {/* Description */}
-            <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-white/40 font-light tracking-wide">
-              Let's discuss your market entry strategy. Schedule a free consultation
-              with our team today and take the first step toward your success.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-to-b from-sky-500 to-sky-600 px-9 py-4.5 text-base font-semibold text-white shadow-2xl shadow-sky-500/30 transition-all duration-300 hover:shadow-sky-500/40 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
-              >
-                <span className="relative z-10">Book Free Consultation</span>
-                <span className="relative z-10 flex size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
-                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-                </span>
-              </Link>
-              <a
-                href="https://wa.me/6285216412782"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.04] px-9 py-4.5 text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <div className="flex size-6 items-center justify-center rounded-full bg-white/10 transition-colors group-hover:bg-white/20">
-                  <Phone className="size-3.5" />
-                </div>
-                Chat on WhatsApp
-              </a>
-            </div>
-
-            {/* Bottom trust footer */}
-            <div className="mt-12 flex items-center justify-center gap-6 text-xs text-white/20">
-              <span className="flex items-center gap-1.5">
-                <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
-                No commitment required
-              </span>
-              <span className="w-px h-3 bg-white/10" />
-              <span className="flex items-center gap-1.5">
-                <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
-                30-minute free consultation
-              </span>
-              <span className="w-px h-3 bg-white/10" />
-              <span className="flex items-center gap-1.5">
-                <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
-                We'll call you
-              </span>
-            </div>
-          </motion.div>
+            </Link>
+            <a
+              href="https://wa.me/6285216412782"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.04] px-9 py-4.5 text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300"
+            >
+              <div className="flex size-6 items-center justify-center rounded-full bg-white/10 transition-colors">
+                <Phone className="size-3.5" />
+              </div>
+              Chat on WhatsApp
+            </a>
+          </div>
+          <div className="mt-12 flex items-center justify-center gap-6 text-xs text-white/20">
+            <span className="flex items-center gap-1.5">
+              <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
+              No commitment required
+            </span>
+            <span className="w-px h-3 bg-white/10" />
+            <span className="flex items-center gap-1.5">
+              <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
+              30-minute free consultation
+            </span>
+            <span className="w-px h-3 bg-white/10" />
+            <span className="flex items-center gap-1.5">
+              <span className="flex size-1.5 rounded-full bg-emerald-400/50" />
+              We'll call you
+            </span>
+          </div>
         </div>
       </section>
     </>
