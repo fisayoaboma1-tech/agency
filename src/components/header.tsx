@@ -100,27 +100,29 @@ export function Header() {
             aria-expanded={menuOpen}
             className="relative z-30 -mr-2 flex size-10 cursor-pointer items-center justify-center lg:hidden"
           >
-            <motion.div
-              animate={{
-                rotate: menuOpen ? 180 : 0,
-                scale: menuOpen ? 0 : 1,
-                opacity: menuOpen ? 0 : 1,
-              }}
-              transition={{ duration: 0.2 }}
-              className="absolute"
-            >
-              <Logs className="size-6 text-white" />
-            </motion.div>
-            <motion.div
-              animate={{
-                rotate: menuOpen ? 0 : -180,
-                scale: menuOpen ? 1 : 0,
-                opacity: menuOpen ? 1 : 0,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <X className="size-6 text-white" />
-            </motion.div>
+            <AnimatePresence mode="wait" initial={false}>
+              {menuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                >
+                  <X className="size-6 text-white" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                >
+                  <Logs className="size-6 text-white" />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
         </div>
       </nav>
