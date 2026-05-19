@@ -179,31 +179,11 @@ export default function HomePage() {
           <div className="flex items-center gap-1.5">
             <span className="text-sm font-medium tracking-[0.2em] uppercase text-white/40">Memuat</span>
             <span className="flex gap-0.5">
-              <motion.span
-                animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                transition={{ duration: 1.2, repeat: Infinity, delay: 0 }}
-                className="size-1.5 rounded-full bg-red-500"
-              />
-              <motion.span
-                animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                transition={{ duration: 1.2, repeat: Infinity, delay: 0.2 }}
-                className="size-1.5 rounded-full bg-white"
-              />
-              <motion.span
-                animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                transition={{ duration: 1.2, repeat: Infinity, delay: 0.4 }}
-                className="size-1.5 rounded-full bg-red-500"
-              />
-              <motion.span
-                animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                transition={{ duration: 1.2, repeat: Infinity, delay: 0.6 }}
-                className="size-1.5 rounded-full bg-white"
-              />
-              <motion.span
-                animate={{ opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                transition={{ duration: 1.2, repeat: Infinity, delay: 0.8 }}
-                className="size-1.5 rounded-full bg-red-500"
-              />
+              <span className="size-1.5 rounded-full bg-red-500 animate-ping" />
+              <span className="size-1.5 rounded-full bg-white animate-ping" style={{ animationDelay: "0.2s" }} />
+              <span className="size-1.5 rounded-full bg-red-500 animate-ping" style={{ animationDelay: "0.4s" }} />
+              <span className="size-1.5 rounded-full bg-white animate-ping" style={{ animationDelay: "0.6s" }} />
+              <span className="size-1.5 rounded-full bg-red-500 animate-ping" style={{ animationDelay: "0.8s" }} />
             </span>
           </div>
         </div>
@@ -228,7 +208,7 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Video Background - Optimized */}
+        {/* Video Background */}
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -240,74 +220,38 @@ export default function HomePage() {
             src="/hero-video.mp4"
             poster="/hero-poster.jpg"
           />
-          {/* Simplified overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/60 to-slate-950/80" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30" />
         </div>
 
-        {/* Simplified orbs - no animate-pulse to reduce layout thrashing */}
-        <div className="pointer-events-none absolute -top-40 -right-40 size-96 rounded-full bg-white/10 blur-3xl will-change-transform" />
-        <div className="pointer-events-none absolute -bottom-40 -left-40 size-96 rounded-full bg-white/5 blur-3xl will-change-transform" />
+        {/* Subtle orbs */}
+        <div className="pointer-events-none absolute -top-40 -right-40 size-96 rounded-full bg-white/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 -left-40 size-96 rounded-full bg-white/5 blur-3xl" />
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 mt-26 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             {/* Premium badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-white/90 backdrop-blur-md shadow-lg shadow-black/10"
-            >
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-white/90 backdrop-blur-md shadow-lg shadow-black/10">
               <span className="flex size-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50" />
               <span>Trusted by 50+ international companies</span>
-            </motion.div>
+            </div>
 
             {/* Main heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] min-h-[2em]"
-            >
-              <AnimatePresence mode="popLayout">
-                <motion.span
-                  key={`line1-${headlineIndex}`}
-                  variants={fadeVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="block"
-                >
-                  {headlineSets[headlineIndex].line1}
-                </motion.span>
-              </AnimatePresence>
+            <h1 className="relative text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+              <span className="block">
+                {headlineSets[headlineIndex].line1}
+              </span>
               <div className="h-2" />
-              <AnimatePresence mode="popLayout">
-                <motion.span
-                  key={`line2-${headlineIndex}`}
-                  variants={fadeVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-                  className="relative block"
-                >
-                  <span className="relative z-10 bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent">
-                    {headlineSets[headlineIndex].line2}
-                  </span>
-                  <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 w-3/4 rounded-full bg-gradient-to-r from-white/0 via-white/40 to-white/0" />
-                </motion.span>
-              </AnimatePresence>
-            </motion.h1>
+              <span className="relative block">
+                <span className="relative z-10 bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent">
+                  {headlineSets[headlineIndex].line2}
+                </span>
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 w-3/4 rounded-full bg-gradient-to-r from-white/0 via-white/40 to-white/0" />
+              </span>
+            </h1>
 
             {/* Rotating service tag */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-8 flex items-center justify-center"
-            >
+            <div className="mt-8 flex items-center justify-center">
               <div className="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 sm:px-6 sm:py-2 backdrop-blur-md shadow-inner shadow-white/5">
                 <span className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/70">
                   <span className="text-white/70 font-medium">Specializing in</span>
@@ -319,34 +263,19 @@ export default function HomePage() {
                   </span>
                 </span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Description */}
             <div className="relative mx-auto mt-10 max-w-2xl">
               <div className="absolute -top-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              <AnimatePresence mode="popLayout">
-                <motion.p
-                  key={`desc-${headlineIndex}`}
-                  variants={fadeVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-                  className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/70 font-light tracking-wide"
-                >
-                  {descriptionSets[headlineIndex]}
-                </motion.p>
-              </AnimatePresence>
+              <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/70 font-light tracking-wide">
+                {descriptionSets[headlineIndex]}
+              </p>
               <div className="absolute -bottom-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
             </div>
 
             {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row"
-            >
+            <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
               <Link
                 href="/contact"
                 className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-b from-slate-700 to-slate-900 px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-black/30 transition-all duration-300 hover:shadow-black/40 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
@@ -366,7 +295,7 @@ export default function HomePage() {
                 </span>
                 Call +62 852 1641 2782
               </a>
-            </motion.div>
+            </div>
 
             {/* Trust indicators */}
             <motion.div
