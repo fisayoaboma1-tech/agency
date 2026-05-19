@@ -55,10 +55,12 @@ export function Header() {
     if (menuOpen) {
       document.addEventListener("keydown", handleKeyDown)
       document.body.style.overflow = "hidden"
+      document.documentElement.setAttribute("data-menu-open", "true")
     }
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
       document.body.style.overflow = ""
+      document.documentElement.removeAttribute("data-menu-open")
     }
   }, [menuOpen])
 
@@ -68,13 +70,13 @@ export function Header() {
         className={cn(
           "w-full transition-all duration-500",
           scrolled
-            ? "bg-white/80 backdrop-blur-xl shadow-sm dark:bg-background/80"
+            ? "bg-[#0b1120]/80 backdrop-blur-xl shadow-sm shadow-black/20"
             : "bg-transparent"
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
           <Link href="/" aria-label="Home" className="flex shrink-0">
-            <Logo light={!scrolled} />
+            <Logo light />
           </Link>
 
           {/* Desktop nav */}
@@ -83,12 +85,7 @@ export function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={cn(
-                    "text-sm font-medium transition-colors",
-                    scrolled
-                      ? "text-foreground/80 hover:text-foreground"
-                      : "text-white/80 hover:text-white"
-                  )}
+                  className="text-sm font-medium text-white/80 transition-colors hover:text-white"
                 >
                   {link.name}
                 </Link>
@@ -112,7 +109,7 @@ export function Header() {
               transition={{ duration: 0.2 }}
               className="absolute"
             >
-              <Logs className={cn("size-6", scrolled && !menuOpen ? "" : "text-white")} />
+              <Logs className="size-6 text-white" />
             </motion.div>
             <motion.div
               animate={{
@@ -122,7 +119,7 @@ export function Header() {
               }}
               transition={{ duration: 0.2 }}
             >
-              <X className={cn("size-6", scrolled && !menuOpen ? "" : "text-white")} />
+              <X className="size-6 text-white" />
             </motion.div>
           </button>
         </div>
@@ -147,10 +144,11 @@ export function Header() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+              style={{ willChange: "transform" }}
               className={cn(
                 "fixed inset-y-0 right-0 z-20 flex w-full max-w-sm flex-col",
-                "bg-gradient-to-b from-[#0a0b12] via-[#11131c] to-[#07080e] shadow-2xl lg:hidden",
+                "bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] shadow-2xl lg:hidden",
                 "shadow-black/60"
               )}
             >
@@ -160,34 +158,27 @@ export function Header() {
                   <Logo light />
                 </Link>
               </div>
-
-              {/* Navigation */}
               <div className="flex-1 overflow-y-auto px-6 py-6">
                 <span className="mb-4 block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
                   Navigation
                 </span>
                 <ul className="space-y-0.5">
-                  {navLinks.map((link, index) => {
+                  {navLinks.map((link) => {
                     const Icon = link.icon
                     return (
-                      <motion.li
-                        key={link.href}
-                        initial={{ opacity: 0, x: 24 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 0.03 * index }}
-                      >
+                      <li key={link.href}>
                         <Link
                           href={link.href}
                           onClick={() => setMenuOpen(false)}
-                          className="group flex items-center gap-3.5 rounded-xl px-3.5 py-3 text-sm font-medium text-white/55 transition-colors hover:bg-white/[0.06] hover:text-white"
+                          className="group flex items-center gap-3.5 rounded-xl px-3.5 py-3 text-sm font-medium text-white/55 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white"
                         >
-                          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.07] bg-white/[0.05] text-white/40 shadow-sm transition-colors group-hover:border-white/25 group-hover:bg-white/10 group-hover:text-white">
+                          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.07] bg-white/[0.05] text-white/40 shadow-sm transition-colors duration-150 group-hover:border-white/25 group-hover:bg-white/10 group-hover:text-white">
                             <Icon className="size-4" />
                           </span>
                           <span className="flex-1">{link.name}</span>
-                          <ChevronRight className="size-4 text-white/25 transition-transform group-hover:translate-x-0.5" />
+                          <ChevronRight className="size-4 text-white/25 transition-transform duration-150 group-hover:translate-x-0.5" />
                         </Link>
-                      </motion.li>
+                      </li>
                     )
                   })}
                 </ul>
@@ -198,11 +189,7 @@ export function Header() {
                     Contact
                   </span>
                   <div className="space-y-3 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4">
-                    <motion.div
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.24 }}
-                    >
+                    <div>
                       <a
                         href="https://wa.me/6285216412782"
                         target="_blank"
@@ -219,7 +206,7 @@ export function Header() {
                         </div>
                         <span className="ml-auto flex size-2 shrink-0 rounded-full bg-green-400 shadow-sm shadow-green-400/30" />
                       </a>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               </div>
