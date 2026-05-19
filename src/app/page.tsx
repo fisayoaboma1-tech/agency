@@ -208,14 +208,14 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0">
+        {/* Video Background - pointer-events-none prevents blocking clicks */}
+        <div className="absolute inset-0 pointer-events-none">
           <video
             autoPlay
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="none"
             className="size-full object-cover"
             src="/hero-video.mp4"
             poster="/hero-poster.jpg"
@@ -224,7 +224,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30" />
         </div>
 
-        {/* Subtle orbs */}
+        {/* Subtle orbs - also non-interactive */}
         <div className="pointer-events-none absolute -top-40 -right-40 size-96 rounded-full bg-white/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-40 -left-40 size-96 rounded-full bg-white/5 blur-3xl" />
 
