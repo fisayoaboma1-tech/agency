@@ -183,7 +183,6 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Cloudinary background video - fully non-interactive */}
         <div className="absolute inset-0 pointer-events-none select-none">
           <video
             autoPlay
@@ -194,15 +193,14 @@ export default function HomePage() {
             className="size-full object-cover"
             src="https://res.cloudinary.com/dahp1ngcc/video/upload/v1779166821/From_KlickPin_CF_Beautiful_Short_Hair_Inspiration_on_a_Budget_-_Pin-337277459614765000_m3jhge.mp4"
           />
-          {/* Dark overlays for blending */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/70 to-slate-950/90" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/90 via-transparent to-slate-950/50" />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 mt-26 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm text-white/90 shadow-lg shadow-black/10">
-              <span className="flex size-2 rounded-full bg-green-400 shadow-lg shadow-green-400/50" />
-              <span>Trusted by 50+ international companies</span>
+            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
+              <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
+              Trusted by 50+ international companies
             </div>
             <h1 className="relative text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
               <span className="block">SIMPLIFYING BUSINESS</span>
@@ -232,16 +230,16 @@ export default function HomePage() {
             <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-b from-slate-700 to-slate-900 px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-black/30 transition-all duration-300 hover:shadow-black/40 active:translate-y-0 overflow-hidden"
+                className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 active:translate-y-0 overflow-hidden"
               >
                 <span className="relative z-10">Book a Consultation</span>
-                <span className="relative z-10 flex size-6 items-center justify-center rounded-full bg-black/20 text-white transition-all duration-300">
+                <span className="relative z-10 flex size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300">
                   <ArrowRight className="size-3.5" />
                 </span>
               </Link>
               <a
                 href="tel:+6285216412782"
-                className="group inline-flex items-center gap-3 rounded-xl border border-white/20 px-8 py-4 text-base font-medium text-white/90 transition-all duration-300 active:translate-y-0"
+                className="group inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/[0.06] px-8 py-4 text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 active:translate-y-0"
               >
                 <span className="relative flex size-3">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
@@ -294,46 +292,46 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="h-px w-8 bg-blue-500/70" />
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white">
-                <BookHeart className="size-3.5" />
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
+                <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
                 Our Services
               </span>
-              <div className="h-px w-8 bg-blue-500/70" />
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
               Comprehensive Market Entry Solutions
             </h2>
-            <p className="mt-4 text-lg text-white/40">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
               Everything you need to establish and grow your business in Indonesia — all under one roof.
             </p>
           </div>
-          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 sm:mt-16 grid gap-5 sm:gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => {
               const Icon = service.icon
               return (
                 <div
                   key={service.title}
-                  className="group relative rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-7 shadow-xl shadow-black/20 transition-all duration-500 hover:border-white/30 hover:from-white/[0.07] hover:to-white/[0.02]"
+                  className="group relative rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-6 sm:p-7 shadow-xl transition-all duration-500 hover:border-white/20 hover:-translate-y-0.5"
                 >
-                  <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-white/20 to-white/10 border border-white/20 group-hover:border-white/30 transition-colors">
-                    <Icon className="size-6 text-white/70" />
+                  <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 group-hover:border-sky-400/30 transition-colors">
+                    <Icon className="size-6 text-sky-300" />
                   </div>
                   <h3 className="text-lg font-semibold text-white">{service.title}</h3>
-                  <p className="mt-2 text-sm text-white/40 leading-relaxed">
+                  <p className="mt-2 text-sm text-white/50 leading-relaxed">
                     {service.description}
                   </p>
-                  <ul className="mt-5 space-y-2.5 border-t border-white/[0.06] pt-5">
+                  <ul className="mt-5 space-y-2.5 border-t border-white/10 pt-5">
                     {service.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-white/40">
-                        <CheckCircle className="mt-0.5 size-4 shrink-0 text-white/60" />
+                      <li key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/50">
+                        <CheckCircle className="mt-0.5 size-4 shrink-0 text-sky-400/80" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                   <Link
                     href={service.href}
-                    className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-white/70 hover:text-white transition-colors"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-sky-300 hover:text-white transition-colors"
                   >
                     Learn more <ChevronRight className="size-3.5" />
                   </Link>
@@ -347,20 +345,24 @@ export default function HomePage() {
       {/* Why Choose Us */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6">
-              <Target className="size-3.5" />
-              Why Choose Us
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
+                <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
+                Why Choose Us
+              </span>
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
               Why Companies Trust SSNI
             </h2>
-            <p className="mt-4 text-lg text-white/40">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
               We combine deep knowledge of Indonesia's regulatory environment with practical execution to deliver results.
             </p>
           </div>
           <div className="grid items-start gap-12 lg:grid-cols-2">
-            <div className="space-y-6">
+            <div className="space-y-5 sm:space-y-6">
               {[
                 { title: "Regulatory Expertise", desc: "Deep understanding of Indonesian laws, BKPM requirements, and SNI standards.", icon: ShieldCheck },
                 { title: "One-Stop Partnership", desc: "From company setup to product certification — no need to juggle multiple vendors.", icon: Zap },
@@ -371,21 +373,21 @@ export default function HomePage() {
                 return (
                   <div
                     key={item.title}
-                    className="group flex gap-4 rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-5 shadow-xl transition-all duration-500 hover:border-white/30 hover:from-white/[0.07]"
+                    className="group flex gap-4 rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 shadow-xl transition-all duration-500 hover:border-white/20"
                   >
-                    <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-white/20 to-white/10 border border-white/20 group-hover:border-white/30 transition-colors">
-                      <Icon className="size-6 text-white/70" />
+                    <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 group-hover:border-sky-400/30 transition-colors">
+                      <Icon className="size-6 text-sky-300" />
                     </div>
                     <div className="pt-1">
                       <h3 className="font-semibold text-white">{item.title}</h3>
-                      <p className="mt-1 text-sm text-white/40 leading-relaxed">{item.desc}</p>
+                      <p className="mt-1 text-sm text-white/50 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 )
               })}
             </div>
             <div>
-              <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-8 shadow-xl transition-all duration-500 hover:border-white/20">
+              <div className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-6 sm:p-8 shadow-xl transition-all duration-500 hover:border-white/20">
                 <h3 className="text-xl font-semibold text-white">Our Service Process</h3>
                 <div className="mt-6 space-y-6">
                   {[
@@ -395,12 +397,12 @@ export default function HomePage() {
                     { step: "04", title: "Approval & Support", desc: "Certification issued, with ongoing compliance support." },
                   ].map((item) => (
                     <div key={item.step} className="flex gap-4">
-                      <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-white/20 to-white/10 border border-white/20 font-bold text-white text-sm shadow-md">
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 font-bold text-sky-300 text-sm shadow-md">
                         {item.step}
                       </div>
                       <div>
                         <h4 className="font-medium text-white">{item.title}</h4>
-                        <p className="text-sm text-white/40">{item.desc}</p>
+                        <p className="text-sm text-white/50">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -408,10 +410,10 @@ export default function HomePage() {
                 <div className="mt-8">
                   <Link
                     href="/process"
-                    className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-slate-700 to-slate-900 px-8 py-4 text-base font-semibold text-white shadow-2xl shadow-black/30 transition-all duration-300 overflow-hidden"
+                    className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 overflow-hidden"
                   >
                     <span className="relative z-10">View Full Process</span>
-                    <span className="relative z-10 flex size-5 items-center justify-center rounded-full bg-black/20 transition-all duration-300">
+                    <span className="relative z-10 flex size-5 items-center justify-center rounded-full bg-white/20 transition-all duration-300">
                       <ChevronRight className="size-3.5" />
                     </span>
                   </Link>
@@ -426,33 +428,37 @@ export default function HomePage() {
       <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6">
-              <Quote className="size-3.5" />
-              Testimonials
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
+                <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
+                Testimonials
+              </span>
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
               What Our Clients Say
             </h2>
-            <p className="mt-4 text-lg text-white/40">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
               Feedback from international companies we've helped enter the Indonesian market.
             </p>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-5 sm:gap-6 lg:gap-8 md:grid-cols-3">
             {testimonials.map((t) => (
               <div
                 key={t.name}
-                className="group relative rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent p-7 shadow-xl transition-all duration-500 hover:border-white/30 hover:from-white/[0.07]"
+                className="group relative rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-6 sm:p-7 shadow-xl transition-all duration-500 hover:border-white/20"
               >
-                <Quote className="size-8 text-white/20 mb-4" />
+                <Quote className="size-8 text-sky-400/30 mb-4" />
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: t.rating }).map((_, i) => (
                     <Star key={i} className="size-4 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-sm text-white/40 leading-relaxed">&ldquo;{t.content}&rdquo;</p>
-                <div className="mt-6 border-t border-white/[0.06] pt-4">
+                <p className="text-sm text-white/50 leading-relaxed">&ldquo;{t.content}&rdquo;</p>
+                <div className="mt-6 border-t border-white/10 pt-4">
                   <div className="font-semibold text-sm text-white">{t.name}</div>
-                  <div className="text-xs text-white/30">{t.role}</div>
+                  <div className="text-xs text-white/40">{t.role}</div>
                 </div>
               </div>
             ))}
@@ -464,13 +470,18 @@ export default function HomePage() {
       <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-medium text-white mb-6">
-              FAQ
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
+                <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
+                FAQ
+              </span>
+              <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
               Frequently Asked Questions
             </h2>
-            <p className="mt-4 text-lg text-white/40">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
               Common questions about setting up a business in Indonesia.
             </p>
           </div>
@@ -478,14 +489,14 @@ export default function HomePage() {
             {faqs.map((faq, i) => (
               <details
                 key={i}
-                className="group rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-transparent shadow-xl transition-all duration-300 [&[open]]:border-white/20 hover:border-white/30"
+                className="group rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl shadow-xl transition-all duration-300 [&[open]]:border-white/20 hover:border-white/20"
               >
                 <summary className="flex cursor-pointer items-center justify-between p-5 font-medium text-white">
                   <span>{faq.q}</span>
-                  <ChevronRight className="size-4 shrink-0 transition-transform duration-300 group-open:rotate-90 text-white/40" />
+                  <ChevronRight className="size-4 shrink-0 transition-transform duration-300 group-open:rotate-90 text-sky-400" />
                 </summary>
-                <div className="border-t border-white/[0.06] px-5 pb-5 pt-3">
-                  <p className="text-sm text-white/40 leading-relaxed">{faq.a}</p>
+                <div className="border-t border-white/10 px-5 pb-5 pt-3">
+                  <p className="text-sm text-white/50 leading-relaxed">{faq.a}</p>
                 </div>
               </details>
             ))}
@@ -493,7 +504,7 @@ export default function HomePage() {
           <div className="mt-10 text-center">
             <p className="text-sm text-white/40">
               Still have questions?{" "}
-              <Link href="/contact" className="font-medium text-white/60 hover:text-white hover:underline">
+              <Link href="/contact" className="font-medium text-sky-300 hover:text-white transition-colors">
                 Contact us
               </Link>
             </p>
@@ -503,7 +514,6 @@ export default function HomePage() {
 
       {/* Get in Touch / Contact Us Section */}
       <section className="relative py-28 lg:py-36 overflow-hidden">
-        {/* Slideshow background images */}
         <div className="absolute inset-0 pointer-events-none select-none">
           {contactImages.map((src, i) => (
             <div
@@ -520,35 +530,34 @@ export default function HomePage() {
               />
             </div>
           ))}
-          {/* Gradient overlays for blending */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-[#0b1120]/40" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/60 via-transparent to-[#0b1120]/80" />
         </div>
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center lg:px-8">
-          <div className="mb-10 flex items-center justify-center gap-4">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-5 py-2 text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
+          <div className="mb-8 sm:mb-10 flex items-center justify-center gap-3 sm:gap-4">
+            <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
               <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
               Get in Touch
             </span>
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-60" />
+            <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
           </div>
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
             <span className="bg-gradient-to-r from-sky-200 via-white to-sky-100 bg-clip-text text-transparent">
               Contact Us
             </span>
           </h2>
-          <p className="mx-auto mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-white/70 font-light tracking-wide drop-shadow-md">
+          <p className="mx-auto mt-6 sm:mt-8 max-w-2xl text-xs sm:text-sm leading-relaxed text-white/40 max-w-2xl mx-auto">
             Ready to expand your business into Indonesia? Get in touch with our team for a free consultation. We typically respond within 24 hours.
           </p>
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/contact"
-              className="group relative inline-flex items-center gap-3 rounded-2xl bg-gradient-to-b from-sky-500 to-sky-600 px-9 py-4.5 text-base font-semibold text-white shadow-2xl shadow-sky-500/30 transition-all duration-300 overflow-hidden"
+              className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-8 sm:px-9 py-4 sm:py-4.5 text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 overflow-hidden"
             >
               <span className="relative z-10">Book Free Consultation</span>
-              <span className="relative z-10 flex size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300">
+              <span className="relative z-10 flex size-5 sm:size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300">
                 <ArrowRight className="size-3.5" />
               </span>
             </Link>
@@ -556,15 +565,15 @@ export default function HomePage() {
               href="https://wa.me/6285216412782"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.08] px-9 py-4.5 text-base font-medium text-white/80 backdrop-blur-sm transition-all duration-300 shadow-lg shadow-black/20"
+              className="group inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/[0.06] px-8 sm:px-9 py-4 sm:py-4.5 text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 shadow-lg shadow-black/20"
             >
-              <div className="flex size-6 items-center justify-center rounded-full bg-white/10 transition-colors">
+              <div className="flex size-5 sm:size-6 items-center justify-center rounded-full bg-white/10 transition-colors">
                 <Phone className="size-3.5" />
               </div>
               Chat on WhatsApp
             </a>
           </div>
-          <div className="mt-12 flex items-center justify-center gap-6 text-xs text-white/50">
+          <div className="mt-10 sm:mt-12 flex items-center justify-center gap-4 sm:gap-6 text-[11px] sm:text-xs text-white/40">
             <span className="flex items-center gap-1.5">
               <span className="flex size-1.5 rounded-full bg-emerald-400/70" />
               No commitment required
