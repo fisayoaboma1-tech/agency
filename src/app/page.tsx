@@ -177,7 +177,7 @@ export default function HomePage() {
             playsInline
             preload="none"
             className="size-full object-cover"
-            src="https://res.cloudinary.com/dahp1ngcc/video/upload/v1779166538/From_KlickPin_CF_24_Spa_Night_Ideas_for_Busy_People_-_Pin-497718196346879930_wjcktl.mp4"
+            src="https://res.cloudinary.com/dahp1ngcc/video/upload/v1779166821/From_KlickPin_CF_Beautiful_Short_Hair_Inspiration_on_a_Budget_-_Pin-337277459614765000_m3jhge.mp4"
           />
           {/* Dark overlays for blending */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/70 to-slate-950/90" />
