@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { WhatsAppFloat } from "@/components/whatsapp-float";
+import { PageLoader } from "@/components/page-loader";
 
 export const metadata: Metadata = {
   title: "PT. Solusi Sertifikasi Nasional Indonesia (SSNI) | Indonesia Market Entry & Business Consulting",
@@ -40,10 +41,12 @@ export default function RootLayout({
       className="h-full antialiased"
     >
       <body className="min-h-full flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppFloat />
+        <PageLoader>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <WhatsAppFloat />
+        </PageLoader>
       </body>
     </html>
   );
