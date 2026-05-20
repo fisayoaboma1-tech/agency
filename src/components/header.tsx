@@ -107,11 +107,11 @@ export function Header() {
             ))}
           </ul>
 
-          {/* Mobile hamburger - only menu icon, no X (tap outside closes) */}
+          {/* Mobile hamburger - opens menu (tap backdrop or Esc to close) */}
           <button
             onClick={() => setMenuOpen(true)}
             aria-label="Open Menu"
-            className="relative z-30 -mr-2 flex size-10 cursor-pointer items-center justify-center lg:hidden"
+            className="relative z-10 -mr-2 flex size-10 cursor-pointer items-center justify-center lg:hidden"
           >
             <Logs className="size-6 text-white" />
           </button>
