@@ -89,9 +89,7 @@ export function Header() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
-          <button onClick={() => handleNavigation("/")} aria-label="Home" className="flex shrink-0 cursor-pointer">
-            <Logo light />
-          </button>
+          <Logo light className="max-sm:scale-[0.7] max-sm:origin-left" />
 
           {/* Desktop nav */}
           <ul className="hidden items-center gap-8 lg:flex">
@@ -146,10 +144,8 @@ export function Header() {
               )}
             >
               {/* Drawer header - smaller left-aligned logo */}
-              <div className="flex items-center justify-start px-4 py-4">
-                <button onClick={() => handleNavigation("/")} aria-label="Home" className="flex shrink-0 cursor-pointer scale-[0.75] origin-left">
-                  <Logo light />
-                </button>
+              <div className="flex items-center justify-start px-4 py-3">
+                <Logo light className="scale-[0.7] origin-left" />
               </div>
               <div className="flex-1 overflow-y-auto px-4 py-4">
                 <span className="mb-4 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">

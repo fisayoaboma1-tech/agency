@@ -169,7 +169,7 @@ export default function ServicesPage() {
                 src="https://res.cloudinary.com/dahp1ngcc/image/upload/v1779193149/download_1_lkb9cw.jpg"
                 alt=""
                 className="size-full object-cover"
-                aria-hidden="true"
+                 aria-hidden="true"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/65 to-black/80" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/90 via-transparent to-[#0b1120]/50" />

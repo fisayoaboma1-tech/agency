@@ -38,7 +38,7 @@ const team = [
 export default function AboutPage() {
   return (
     <>
-      {/* About PT. SSNI */}
+      {/* About PT. KBB */}
       <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none select-none">
           <img
@@ -63,7 +63,7 @@ export default function AboutPage() {
             </span>
             <h2 className="mt-5 sm:mt-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
               About{" "}
-              <span className="bg-gradient-to-r from-sky-200 via-white to-sky-100 bg-clip-text text-transparent">PT. SSNI</span>
+              <span className="bg-gradient-to-r from-amber-200 via-white to-amber-100 bg-clip-text text-transparent">PT. KBB</span>
             </h2>
             <p className="mt-4 sm:mt-5 text-xs sm:text-sm leading-relaxed text-white/60 max-w-2xl mx-auto">
               We are a specialized consulting firm dedicated to helping foreign companies
@@ -76,7 +76,7 @@ export default function AboutPage() {
         {/* Transition blend between sections */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
-      {/* Why SSNI */}
+      {/* Why KBB */}
       <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         <div className="absolute inset-0 pointer-events-none select-none">
@@ -100,7 +100,7 @@ export default function AboutPage() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
-              Why Choose SSNI?
+              Why Choose KBB?
             </h2>
             <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
               We bring together deep regulatory knowledge, practical experience, and
@@ -126,7 +126,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-        {/* Transition blend between Why SSNI and Our Expertise */}
+        {/* Transition blend between Why KBB and Our Expertise */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120] z-10" />
       </section>
 

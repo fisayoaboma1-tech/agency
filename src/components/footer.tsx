@@ -36,8 +36,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "support@ptssni.id",
-    href: "mailto:support@ptssni.id",
+    value: "support@ptkbb.id",
+    href: "mailto:support@ptkbb.id",
   },
   {
     icon: MapPin,
@@ -73,10 +73,10 @@ export function Footer() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Subtle top border glow */}
-      <div className="absolute top-0 left-0 right-0 z-10 h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 z-10 h-px bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
 
       {/* Ambient glow top */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 w-[600px] h-[300px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 w-[600px] h-[300px] bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Main content */}
@@ -84,9 +84,7 @@ export function Footer() {
           <div className="grid gap-12 sm:gap-14 lg:grid-cols-12 lg:gap-10">
             {/* Brand - wide column */}
             <div className="lg:col-span-4 space-y-5">
-              <button onClick={() => handleNavigation("/")} className="text-left cursor-pointer">
-                <Logo />
-              </button>
+              <Logo light className="max-sm:scale-[0.7] max-sm:origin-left" />
               {/* Tagline */}
               <p className="text-[14px] text-white/70 leading-relaxed max-w-xs">
                 Trusted partner for foreign companies entering the Indonesian market. 
@@ -143,8 +141,8 @@ export function Footer() {
                     href="tel:+6285216412782"
                     className="flex items-start gap-3 group"
                   >
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-blue-500/10 border border-blue-400/20">
-                      <Phone className="size-3 text-blue-400/70" />
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-400/20">
+                      <Phone className="size-3 text-amber-400/70" />
                     </div>
                     <div>
                       <span className="block text-[10px] font-medium uppercase tracking-wider text-gray-100/60">
@@ -161,8 +159,8 @@ export function Footer() {
                     href="tel:+6283161698888"
                     className="flex items-start gap-3 group"
                   >
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-blue-500/10 border border-blue-400/20">
-                      <Phone className="size-3 text-blue-400/70" />
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-400/20">
+                      <Phone className="size-3 text-amber-400/70" />
                     </div>
                     <div>
                       <span className="block text-[10px] font-medium uppercase tracking-wider text-gray-100/60">
@@ -176,26 +174,26 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="mailto:support@ptssni.id"
+                    href="mailto:support@ptkbb.id"
                     className="flex items-start gap-3 group"
                   >
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-blue-500/10 border border-blue-400/20">
-                      <Mail className="size-3 text-blue-400/70" />
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-400/20">
+                      <Mail className="size-3 text-amber-400/70" />
                     </div>
                     <div>
                       <span className="block text-[10px] font-medium uppercase tracking-wider text-gray-100/60">
                         Email
                       </span>
                       <span className="text-[14px] text-gray-400 group-hover:text-white transition-colors break-all">
-                        support@ptssni.id
+                        support@ptkbb.id
                       </span>
                     </div>
                   </a>
                 </li>
                 <li>
                   <div className="flex items-start gap-3">
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-blue-500/10 border border-blue-400/20">
-                      <MapPin className="size-3 text-blue-400/70" />
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-400/20">
+                      <MapPin className="size-3 text-amber-400/70" />
                     </div>
                     <div>
                       <span className="block text-[10px] font-medium uppercase tracking-wider text-gray-100/60">
@@ -220,7 +218,7 @@ export function Footer() {
         <div className="border-t border-white/[0.06] py-7">
           <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
             <p className="text-[11px] text-white/40 text-center sm:text-left leading-relaxed">
-              &copy; {new Date().getFullYear()} PT. Solusi Sertifikasi Nasional Indonesia (SSNI). All reserved.
+              &copy; {new Date().getFullYear()} PT. Konsultan Berdikari Bersama (KBB). All rights reserved.
             </p>
             <p className="text-[11px] text-white/30 text-center leading-relaxed">
               Simplifying Business Expansion into Indonesia

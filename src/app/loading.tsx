@@ -13,14 +13,14 @@ export default function Loading() {
       {/* Company branding */}
       <div className="relative mb-12 flex flex-col items-center gap-3">
         <div className="flex items-center gap-3">
-          <div className="size-10 rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/20 border border-sky-400/30 flex items-center justify-center shadow-lg shadow-sky-500/10">
-            <svg className="size-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-sm font-bold text-cyan-300">PT SSNI</span>
-            <span className="text-[10px] text-sky-300/70">Solusi Sertifikasi Nasional</span>
+          <img
+            src="https://res.cloudinary.com/dahp1ngcc/image/upload/v1779260635/Pngtree_letter_p_icon_8622509_j1t2dg.png"
+            alt="KBB Logo"
+            className="size-9 object-contain shrink-0"
+          />
+          <div className="flex flex-col leading-tight text-left">
+            <span className="text-sm font-bold text-blue-200">PT KBB</span>
+            <span className="text-[10px] text-white/70">Konsultan Berdikari Bersama</span>
           </div>
         </div>
       </div>

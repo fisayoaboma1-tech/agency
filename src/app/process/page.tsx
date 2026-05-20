@@ -271,7 +271,7 @@ export default function ProcessPage() {
               End-to-End Partnership
             </h2>
             <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
-              From your first inquiry to long-term compliance support, SSNI is with you
+              From your first inquiry to long-term compliance support, KBB is with you
               at every stage of your Indonesia market entry journey.
             </p>
           </motion.div>

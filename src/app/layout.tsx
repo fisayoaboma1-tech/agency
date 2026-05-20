@@ -6,9 +6,9 @@ import { WhatsAppFloat } from "@/components/whatsapp-float";
 import { PageLoader } from "@/components/page-loader";
 
 export const metadata: Metadata = {
-  title: "PT. Solusi Sertifikasi Nasional Indonesia (SSNI) | Indonesia Market Entry & Business Consulting",
+  title: "PT. Konsultan Berdikari Bersama (KBB) | Indonesia Market Entry & Business Consulting",
   description:
-    "Simplify your business expansion into Indonesia. SSNI provides end-to-end company incorporation, licensing, import/export compliance, SNI product certification, and work permit services for foreign companies.",
+    "Simplify your business expansion into Indonesia. KBB provides end-to-end company incorporation, licensing, import/export compliance, SNI product certification, and work permit services for foreign companies.",
   keywords: [
     "Indonesia business setup",
     "company registration Indonesia",
@@ -18,11 +18,12 @@ export const metadata: Metadata = {
     "business license Indonesia",
     "import export compliance Indonesia",
     "work permit Indonesia",
-    "PT SSNI",
-    "Solusi Sertifikasi Nasional Indonesia",
+    "PT KBB",
+    "Konsultan Berdikari Bersama",
+    "KBB consulting Indonesia",
   ],
   openGraph: {
-    title: "PT. Solusi Sertifikasi Nasional Indonesia (SSNI)",
+    title: "PT. Konsultan Berdikari Bersama (KBB)",
     description:
       "Simplifying Business Expansion into Indonesia — Company Setup, Licensing, Compliance & Certification.",
     type: "website",

@@ -2,21 +2,39 @@
 
 import React from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
+  const router = useRouter()
+
+  function handleClick() {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+    router.refresh()
+    router.push("/")
+  }
+
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <button
+      type="button"
+      onClick={handleClick}
+      aria-label="KBB Home"
+      className={`flex items-center gap-1.5 justify-start cursor-pointer shrink-0 ${className}`}
+    >
       <Image
-        src="https://res.cloudinary.com/dahp1ngcc/image/upload/v1779103592/Pngtree_s_letter_logo_3626192_w5u5gm.png"
-        alt="Logo"
-        width={40}
-        height={40}
-        className="object-contain"
+        src="https://res.cloudinary.com/dahp1ngcc/image/upload/v1779260635/Pngtree_letter_p_icon_8622509_j1t2dg.png"
+        alt="KBB Logo"
+        width={36}
+        height={36}
+        className="object-contain shrink-0"
       />
-      <div className="flex flex-col leading-tight">
-        <span className={`text-sm font-bold ${light ? "text-cyan-300" : "text-cyan-500"}`}>PT SSNI</span>
-        <span className={`text-[10px] ${light ? "text-sky-300/70" : "text-sky-600/80"}`}>Solusi Sertifikasi Nasional</span>
+      <div className="flex flex-col leading-tight text-left">
+        <span className={`text-sm font-bold ${light ? "text-blue-200" : "text-blue-600"}`}>
+          PT KBB
+        </span>
+        <span className={`text-[10px] ${light ? "text-white/70" : "text-white/80"}`}>
+          Konsultan Berdikari Bersama
+        </span>
       </div>
-    </div>
+    </button>
   )
 }

@@ -15,11 +15,9 @@ import {
   ChevronRight,
   Phone,
   Quote,
-  Sparkles,
   Zap,
   Target,
   BarChart3,
-  BookHeart,
 } from "lucide-react"
 
 const services = [
@@ -64,65 +62,24 @@ const testimonials = [
   {
     name: "Alexandre Dubois",
     role: "CEO, EuroTech Manufacturing",
-    content: "SSNI made our company registration in Indonesia completely seamless. Their team handled everything from NIB to industry permits. We were operational in under 3 months.",
+    content: "KBB made our company registration in Indonesia completely seamless. Their team handled everything from NIB to industry permits. We were operational in under 3 months.",
     rating: 4.8,
   },
   {
     name: "Sarah Chen",
     role: "Head of APAC, GreenEnergy Corp",
-    content: "The SNI certification process seemed daunting, but SSNI's expertise made it straightforward. They guided us through every step of testing and compliance.",
+    content: "The SNI certification process seemed daunting, but KBB's expertise made it straightforward. They guided us through every step of testing and compliance.",
     rating: 4.5,
   },
   {
     name: "Michael Torres",
     role: "Director, Pacific Trade Group",
-    content: "We needed import/export compliance support urgently. SSNI responded within hours and had our documentation ready before the deadline. Highly professional.",
+    content: "We needed import/export compliance support urgently. KBB responded within hours and had our documentation ready before the deadline. Highly professional.",
     rating: 5,
   },
 ]
 
-// Animated counter component: counts from 0 → target, resets, loops
-function AnimatedCounter({ target, suffix = "", interval = 7000 }: { target: number; suffix?: string; interval?: number }) {
-  const [count, setCount] = React.useState(0)
-  const [phase, setPhase] = React.useState<"counting" | "holding" | "resetting">("counting")
-
-  React.useEffect(() => {
-    const steps = Math.min(target, 40) // number of increments
-    const increment = target / steps
-    const delay = 60 // ms per increment
-
-    let current = 0
-    const timer = setInterval(() => {
-      current += increment
-      if (current >= target) {
-        current = target
-        setCount(target)
-        clearInterval(timer)
-        setPhase("holding")
-        // hold for 5s, then reset and recount
-        setTimeout(() => {
-          setPhase("resetting")
-          setCount(0)
-          setTimeout(() => setPhase("counting"), 300)
-        }, 5000)
-      } else {
-        setCount(Math.floor(current))
-      }
-    }, delay)
-
-    return () => clearInterval(timer)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase === "counting"])
-
-  return <>{count}{suffix}</>
-}
-
-const stats = [
-  { value: 50, suffix: "+", label: "Foreign Companies Served" },
-  { value: 98, suffix: "%", label: "Success Rate" },
-  { value: 5, suffix: "+", label: "Years of Expertise" },
-  { value: 100, suffix: "%", label: "Compliance Guaranteed" },
-]
+import { StatsCounter } from "@/components/stats-counter"
 
 const faqs = [
   {
@@ -401,16 +358,7 @@ export default function HomePage() {
       <section className="relative py-12 bg-gradient-to-b from-[#0b1120] via-[#111827]/80 to-[#0b1120] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-sky-500/[0.02] to-transparent pointer-events-none" />
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl font-bold bg-gradient-to-b from-white to-slate-300 bg-clip-text text-transparent">
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                </div>
-                <div className="mt-2 text-sm text-white/40">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+          <StatsCounter />
         </div>
         {/* Transition blend between Stats and Services */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-[#0b1120]/50 to-[#0b1120]" />
@@ -526,7 +474,7 @@ export default function HomePage() {
               <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
-              Why Companies Trust SSNI
+              Why Companies Trust KBB
             </h2>
             <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
               We combine deep knowledge of Indonesia's regulatory environment with practical execution to deliver results.
@@ -677,7 +625,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-center text-lg font-semibold text-white">Review Access Restricted</h3>
                 <p className="mt-3 text-center text-sm text-white/50 leading-relaxed">
-                  You can't drop a review if you haven't worked with us. Please complete a service engagement with SSNI first — we'd love to hear your feedback afterward.
+                  You can't drop a review if you haven't worked with us. Please complete a service engagement with KBB first — we'd love to hear your feedback afterward.
                 </p>
                 <div className="mt-6 text-center">
                   <Link
