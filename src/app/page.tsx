@@ -2,6 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
+import { motion } from "motion/react"
 import {
   ArrowRight,
   CheckCircle,
@@ -64,13 +65,13 @@ const testimonials = [
     name: "Alexandre Dubois",
     role: "CEO, EuroTech Manufacturing",
     content: "SSNI made our company registration in Indonesia completely seamless. Their team handled everything from NIB to industry permits. We were operational in under 3 months.",
-    rating: 5,
+    rating: 4.8,
   },
   {
     name: "Sarah Chen",
     role: "Head of APAC, GreenEnergy Corp",
     content: "The SNI certification process seemed daunting, but SSNI's expertise made it straightforward. They guided us through every step of testing and compliance.",
-    rating: 5,
+    rating: 4.5,
   },
   {
     name: "Michael Torres",
@@ -111,18 +112,38 @@ const faqs = [
 ]
 
 export default function HomePage() {
-  const [showLoader, setShowLoader] = React.useState(true)
   const [slideIndex, setSlideIndex] = React.useState(0)
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => setShowLoader(false), 3000)
-    return () => clearTimeout(timer)
-  }, [])
+  const [whySlideIndex, setWhySlideIndex] = React.useState(0)
+  const [servicesSlideIndex, setServicesSlideIndex] = React.useState(0)
+  const [showReviewModal, setShowReviewModal] = React.useState(false)
+  const [wordSwap, setWordSwap] = React.useState(false)
+  const [swapPhase, setSwapPhase] = React.useState<"idle" | "exiting" | "entering">("idle")
+  const [taglineSwap, setTaglineSwap] = React.useState(false)
+  const [taglinePhase, setTaglinePhase] = React.useState<"idle" | "exiting" | "entering">("idle")
+  const headingWords = ["SIMPLIFYING", "STREAMLINING", "FACILITATING", "EXPEDITING", "ACCELERATING"]
+  const taglineWords = ["EXPANSION", "ENTRY", "PENETRATION", "ESTABLISHMENT", "INTEGRATION"]
+  const [headingIndex, setHeadingIndex] = React.useState(0)
+  const [taglineIndex, setTaglineIndex] = React.useState(0)
+  const descriptionPhrases = [
+    "End to end support for foreign companies entering the Indonesian market. From company incorporation and licensing to SNI certification and import export compliance, we handle the complexity so you can focus on growth.",
+    "Comprehensive assistance for international businesses expanding into Indonesia. From entity registration and permit acquisition to product certification and trade compliance, we manage every detail so you can concentrate on scaling.",
+    "Full service facilitation for overseas enterprises entering the Indonesian economy. From legal entity formation and regulatory licensing to SNI product approval and customs clearance, we take care of it all for you.",
+    "Complete guidance for foreign firms establishing operations in Indonesia. From company setup and government permits to certification and cross border trade compliance, we simplify the entire journey for your success.",
+    "Total support for global companies integrating into the Indonesian market. From business registration and license procurement to SNI certification and import export regulation, we remove the obstacles so you can thrive.",
+  ]
+  const [descriptionIndex, setDescriptionIndex] = React.useState(0)
 
   // Image slideshow for contact section
   const contactImages = [
     "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/Kelly_Talking_to_herself_gvknz9.jpg",
     "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/download_xuc0pn.jpg",
+  ]
+
+  // Why Choose Us background slideshow images
+  const whyChooseUsImages = [
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779193149/download_1_lkb9cw.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779193149/work_wmuklk.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779193149/office_zoadp7.jpg",
   ]
 
   React.useEffect(() => {
@@ -132,57 +153,73 @@ export default function HomePage() {
     return () => clearInterval(interval)
   }, [contactImages.length])
 
-  if (showLoader) {
-    return (
-      <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-950 to-[#0b1120]">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-72 rounded-full bg-sky-500/10 blur-3xl pointer-events-none" />
-        <div className="relative mb-12 flex flex-col items-center gap-3">
-          <div className="flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/20 border border-sky-400/30 flex items-center justify-center shadow-lg shadow-sky-500/10">
-              <svg className="size-5 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-sm font-bold text-cyan-300">PT SSNI</span>
-              <span className="text-[10px] text-sky-300/70">Solusi Sertifikasi Nasional</span>
-            </div>
-          </div>
-        </div>
-        <div className="loader mb-8" />
-        <div className="flex items-center gap-3">
-          <div className="flex flex-col size-7 shrink-0 rounded-sm shadow-lg shadow-black/30 overflow-hidden ring-1 ring-white/10">
-            <div className="h-1/2 bg-red-600" />
-            <div className="h-1/2 bg-white" />
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-sm font-medium tracking-[0.2em] uppercase text-white/40">Memuat</span>
-            <span className="flex gap-0.5">
-              <span className="size-1.5 rounded-full bg-red-500 animate-ping" />
-              <span className="size-1.5 rounded-full bg-white animate-ping" style={{ animationDelay: "0.2s" }} />
-              <span className="size-1.5 rounded-full bg-red-500 animate-ping" style={{ animationDelay: "0.4s" }} />
-              <span className="size-1.5 rounded-full bg-white animate-ping" style={{ animationDelay: "0.6s" }} />
-              <span className="size-1.5 rounded-full bg-red-500 animate-ping" style={{ animationDelay: "0.8s" }} />
-            </span>
-          </div>
-        </div>
-        <p className="mt-6 text-xs text-white/20 tracking-wider text-center max-w-[200px] leading-relaxed">
-          Mitra terpercaya Anda untuk masuk pasar Indonesia
-        </p>
-        <div className="absolute bottom-12 flex items-center gap-2 text-[10px] tracking-widest uppercase text-white/10">
-          <svg className="size-3 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
-          </svg>
-          <span>Memperbarui</span>
-        </div>
-      </div>
-    )
-  }
+  // Why Choose Us slideshow interval
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setWhySlideIndex((prev) => (prev + 1) % whyChooseUsImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [whyChooseUsImages.length])
+
+  // Services section background slideshow images
+  const servicesImages = [
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779251980/download_10_truttr.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779251981/download_9_gnz2nz.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779251980/download_11_d2p9on.jpg",
+  ]
+
+  // Services section slideshow interval
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setServicesSlideIndex((prev) => (prev + 1) % servicesImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [servicesImages.length])
+
+  // Heading word animation: cycles through 5 synonyms every 6s
+  React.useEffect(() => {
+    const cycle = setInterval(() => {
+      setSwapPhase("exiting")
+      setTimeout(() => {
+        setHeadingIndex((prev) => (prev + 1) % headingWords.length)
+        setWordSwap((prev) => !prev)
+        setSwapPhase("entering")
+        setTimeout(() => {
+          setSwapPhase("idle")
+        }, 800)
+      }, 600)
+    }, 6000)
+    return () => clearInterval(cycle)
+  }, [headingWords.length])
+
+  // Tagline animation: cycles through 5 synonyms every 6s (offset so they don't sync together)
+  React.useEffect(() => {
+    const cycle = setInterval(() => {
+      setTaglinePhase("exiting")
+      setTimeout(() => {
+        setTaglineIndex((prev) => (prev + 1) % taglineWords.length)
+        setTaglineSwap((prev) => !prev)
+        setTaglinePhase("entering")
+        setTimeout(() => {
+          setTaglinePhase("idle")
+        }, 800)
+      }, 600)
+    }, 6000)
+    return () => clearInterval(cycle)
+  }, [taglineWords.length])
+
+  // Description text swap (no animation): changes the paragraph text every 8s
+  React.useEffect(() => {
+    const cycle = setInterval(() => {
+      setDescriptionIndex((prev) => (prev + 1) % descriptionPhrases.length)
+    }, 8000)
+    return () => clearInterval(cycle)
+  }, [descriptionPhrases.length])
 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none select-none">
           <video
             autoPlay
@@ -190,90 +227,138 @@ export default function HomePage() {
             muted
             playsInline
             preload="none"
-            className="size-full object-cover"
+            className="size-full object-contain"
             src="https://res.cloudinary.com/dahp1ngcc/video/upload/v1779166821/From_KlickPin_CF_Beautiful_Short_Hair_Inspiration_on_a_Budget_-_Pin-337277459614765000_m3jhge.mp4"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/70 to-slate-950/90" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/90 via-transparent to-slate-950/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-900/50 to-slate-950/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/60 via-transparent to-slate-950/30" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 mt-26 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-12 lg:px-16 pt-6 sm:pt-8">
+          <div className="w-full lg:max-w-[45%] xl:max-w-[42%]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-6 sm:mb-8  inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-3.5 sm:px-4 py-1.5 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20"
+            >
               <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
               Trusted by 50+ international companies
-            </div>
-            <h1 className="relative text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
-              <span className="block">SIMPLIFYING BUSINESS</span>
-              <div className="h-2" />
-              <span className="relative block">
-                <span className="relative z-10 bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent">
-                  EXPANSION INTO INDONESIA
-                </span>
-              </span>
-            </h1>
-            <div className="mt-8 flex items-center justify-center">
-              <div className="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 sm:px-6 sm:py-2 shadow-inner shadow-white/5">
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] font-black tracking-tight text-white leading-[1.05] text-left min-h-[1.2em]"
+            >
+              <motion.span
+                className="block font-black [text-shadow:0_0_2px_#fff,0_0_4px_rgba(255,255,255,0.3),0_0_8px_rgba(255,255,255,0.1)]"
+                animate={
+                  swapPhase === "exiting"
+                    ? { x: 200, opacity: 0 }
+                    : swapPhase === "entering"
+                    ? { x: -200, opacity: 0 }
+                    : { x: 0, opacity: 1 }
+                }
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                {headingWords[headingIndex]} BUSINESS
+              </motion.span>
+              <motion.span
+                className="block mt-1 sm:mt-2 bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent"
+                animate={
+                  taglinePhase === "exiting"
+                    ? { x: 200, opacity: 0 }
+                    : taglinePhase === "entering"
+                    ? { x: -200, opacity: 0 }
+                    : { x: 0, opacity: 1 }
+                }
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                {taglineWords[taglineIndex]} INTO INDONESIA
+              </motion.span>
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-5 sm:mt-6"
+            >
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-4 py-1.5 sm:px-5 sm:py-2 shadow-inner shadow-white/5">
                 <span className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/70">
                   <span className="text-white/70 font-medium">Specializing in</span>
                   <span className="text-white/30">|</span>
                   <span className="font-medium text-white">Market Entry Strategy</span>
                 </span>
               </div>
-            </div>
-            <div className="relative mx-auto mt-10 max-w-2xl">
-              <div className="absolute -top-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-white/70 font-light tracking-wide">
-                End-to-end support for foreign companies entering the Indonesian market. From company incorporation and licensing to SNI certification and import/export compliance — we handle the complexity so you can focus on growth.
-              </p>
-              <div className="absolute -bottom-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            </div>
-            <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
+            </motion.div>
+
+            <p
+              className="mt-6 sm:mt-8 text-sm sm:text-base lg:text-lg leading-relaxed text-white/60 font-light tracking-wide text-left max-w-xl"
+            >
+              {descriptionPhrases[descriptionIndex]}
+            </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start gap-3 sm:gap-4"
+            >
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 active:translate-y-0 overflow-hidden"
+                className="group relative inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full sm:w-auto justify-center"
               >
                 <span className="relative z-10">Book a Consultation</span>
-                <span className="relative z-10 flex size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300">
-                  <ArrowRight className="size-3.5" />
+                <span className="relative z-10 flex size-5 sm:size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300 group-hover:scale-110">
+                  <ArrowRight className="size-3 sm:size-3.5 transition-transform group-hover:translate-x-0.5" />
                 </span>
               </Link>
               <a
                 href="tel:+6285216412782"
-                className="group inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/[0.06] px-8 py-4 text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 active:translate-y-0"
+                className="group inline-flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.06] px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white w-full sm:w-auto justify-center"
               >
-                <span className="relative flex size-3">
+                <span className="relative flex size-2.5 sm:size-3">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex size-3 rounded-full bg-green-500" />
+                  <span className="relative inline-flex size-2.5 sm:size-3 rounded-full bg-green-500" />
                 </span>
                 Call +62 852 1641 2782
               </a>
-            </div>
-            <div className="mt-16 flex items-center justify-center gap-8 sm:gap-12 text-white/30 text-xs tracking-widest uppercase">
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-12 sm:mt-16 flex flex-wrap items-center gap-x-6 sm:gap-x-10 gap-y-3 text-white/30 text-[11px] sm:text-xs tracking-widest uppercase"
+            >
               <span className="flex items-center gap-2">
-                <Building2 className="size-3.5" />
+                <Building2 className="size-3 sm:size-3.5" />
                 PT PMA
               </span>
               <span className="flex items-center gap-2">
-                <ShieldCheck className="size-3.5" />
+                <ShieldCheck className="size-3 sm:size-3.5" />
                 SNI Certified
               </span>
               <span className="flex items-center gap-2">
-                <Globe className="size-3.5" />
+                <Globe className="size-3 sm:size-3.5" />
                 OSS-RBA
               </span>
-              <span className="hidden sm:flex items-center gap-2">
-                <FileCheck className="size-3.5" />
+              <span className="flex items-center gap-2">
+                <FileCheck className="size-3 sm:size-3.5" />
                 BKPM
               </span>
-            </div>
+            </motion.div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0b1120] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/70 to-transparent" />
       </section>
 
       {/* Stats Bar */}
-      <section className="border-y border-white/10 bg-gradient-to-br from-[#0b1120] via-[#111827] to-[#0b1120] overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
+      <section className="relative py-12 bg-gradient-to-b from-[#0b1120] via-[#111827]/80 to-[#0b1120] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-sky-500/[0.02] to-transparent pointer-events-none" />
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
@@ -285,13 +370,37 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+        {/* Transition blend between Stats and Services */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent via-[#0b1120]/50 to-[#0b1120]" />
       </section>
 
       {/* Services Overview */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#0b1120] to-transparent z-20" />
+        {/* Image background slideshow */}
+        <div className="absolute inset-0 pointer-events-none select-none">
+          {servicesImages.map((src, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                i === servicesSlideIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={src}
+                alt=""
+                className="size-full object-cover"
+                aria-hidden="true"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1120]/85 via-[#0b1120]/70 to-[#0b1120]/85" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-[#0b1120]/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/80 via-transparent to-[#0b1120]/80" />
+        </div>
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="flex items-center justify-center gap-3 mb-3">
               <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
                 <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
@@ -306,7 +415,7 @@ export default function HomePage() {
               Everything you need to establish and grow your business in Indonesia — all under one roof.
             </p>
           </div>
-          <div className="mt-12 sm:mt-16 grid gap-5 sm:gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="-mt-17 sm:mt-16 grid gap-5 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2">
             {services.map((service) => {
               const Icon = service.icon
               return (
@@ -343,8 +452,28 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none select-none">
+          {whyChooseUsImages.map((src, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                i === whySlideIndex ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={src}
+                alt=""
+                className="size-full object-cover"
+                aria-hidden="true"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/70 to-slate-950/85" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-[#0b1120]/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/60 via-transparent to-[#0b1120]/80" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent via-sky-400/40 to-transparent" />
@@ -374,7 +503,7 @@ export default function HomePage() {
                   <div
                     key={item.title}
                     className="group flex gap-4 rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 shadow-xl transition-all duration-500 hover:border-white/20"
-                  >
+                   >
                     <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 group-hover:border-sky-400/30 transition-colors">
                       <Icon className="size-6 text-sky-300" />
                     </div>
@@ -425,7 +554,8 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#0b1120] to-transparent" />
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
@@ -450,10 +580,22 @@ export default function HomePage() {
                 className="group relative rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-6 sm:p-7 shadow-xl transition-all duration-500 hover:border-white/20"
               >
                 <Quote className="size-8 text-sky-400/30 mb-4" />
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="size-4 fill-yellow-400 text-yellow-400" />
-                  ))}
+                <div className="flex gap-0.5 mb-4 relative">
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        className={`size-4 ${
+                          star <= Math.floor(t.rating)
+                            ? "fill-amber-400 text-amber-400"
+                            : star === Math.ceil(t.rating) && t.rating % 1 >= 0.3
+                            ? "fill-amber-400/50 text-amber-400/50"
+                            : "fill-white/10 text-white/10"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="ml-2 text-[11px] font-medium text-white/30 tracking-tight">{t.rating.toFixed(1)}</span>
                 </div>
                 <p className="text-sm text-white/50 leading-relaxed">&ldquo;{t.content}&rdquo;</p>
                 <div className="mt-6 border-t border-white/10 pt-4">
@@ -463,11 +605,59 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <div className="mt-10 text-center">
+            <button
+              onClick={() => setShowReviewModal(true)}
+              className="group inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white/60 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white shadow-lg shadow-black/20"
+            >
+              <Star className="size-4" />
+              Leave a Review
+            </button>
+          </div>
+          {/* Review Modal */}
+          {showReviewModal && (
+            <div
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowReviewModal(false)}
+            >
+              <div
+                className="relative max-w-md w-full rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900 to-[#0b1120] p-8 shadow-2xl shadow-black/50"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setShowReviewModal(false)}
+                  className="absolute top-4 right-4 flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-white/40 hover:text-white/80 transition-colors text-lg leading-none"
+                >
+                  &times;
+                </button>
+                <div className="mb-6 flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400/20 to-yellow-500/10 border border-amber-400/20 mx-auto">
+                  <Star className="size-7 text-amber-300" />
+                </div>
+                <h3 className="text-center text-lg font-semibold text-white">Review Access Restricted</h3>
+                <p className="mt-3 text-center text-sm text-white/50 leading-relaxed">
+                  You can't drop a review if you haven't worked with us. Please complete a service engagement with SSNI first — we'd love to hear your feedback afterward.
+                </p>
+                <div className="mt-6 text-center">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30"
+                    onClick={() => setShowReviewModal(false)}
+                  >
+                    Start a Service
+                    <ArrowRight className="size-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
+        {/* Transition blend between Testimonials and FAQ */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#0b1120] to-transparent" />
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
@@ -586,7 +776,7 @@ export default function HomePage() {
             <span className="w-px h-3 bg-white/20" />
             <span className="flex items-center gap-1.5">
               <span className="flex size-1.5 rounded-full bg-emerald-400/70" />
-              24-hour response
+              24 hour response
             </span>
           </div>
         </div>
