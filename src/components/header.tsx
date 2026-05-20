@@ -82,13 +82,29 @@ export function Header() {
     <header className="fixed top-0 z-50 w-full">
       <nav
         className={cn(
-          "w-full transition-all duration-500",
+          "w-full transition-all duration-500 relative",
           scrolled
             ? "bg-[#0b1120]/80 backdrop-blur-xl shadow-sm shadow-black/20"
             : "bg-transparent"
         )}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
+        {/* Hero video clipped as header background before scrolling */}
+        {!scrolled && (
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="absolute inset-0 size-full object-cover"
+              src="https://res.cloudinary.com/dahp1ngcc/video/upload/v1779166821/From_KlickPin_CF_Beautiful_Short_Hair_Inspiration_on_a_Budget_-_Pin-337277459614765000_m3jhge.mp4"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-slate-900/40 to-slate-950/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/40" />
+          </div>
+        )}
+        <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
           <button onClick={() => handleNavigation("/")} aria-label="Home" className="flex shrink-0 cursor-pointer">
             <Logo light />
           </button>
