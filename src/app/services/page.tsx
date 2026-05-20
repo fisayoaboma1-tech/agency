@@ -115,21 +115,12 @@ export default function ServicesPage() {
       {/* Hero */}
       <section className="relative pt-20 pb-14 sm:py-24 lg:py-28 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none select-none">
-          {contactImages.map((src, i) => (
-            <div
-              key={i}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                i === slideIndex ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img
-                src={src}
-                alt=""
-                className="size-full object-cover"
-                aria-hidden="true"
-              />
-            </div>
-          ))}
+          <img
+            src="https://res.cloudinary.com/dahp1ngcc/image/upload/v1779193149/download_2_hdvd3v.jpg"
+            alt=""
+            className="size-full object-cover"
+            aria-hidden="true"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-[#0b1120]/40" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/60 via-transparent to-[#0b1120]/80" />

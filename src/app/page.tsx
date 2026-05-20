@@ -166,6 +166,7 @@ export default function HomePage() {
     "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779251980/download_10_truttr.jpg",
     "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779251981/download_9_gnz2nz.jpg",
     "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779251980/download_11_d2p9on.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779193149/download_2_hdvd3v.jpg",
   ]
 
   // Services section slideshow interval
