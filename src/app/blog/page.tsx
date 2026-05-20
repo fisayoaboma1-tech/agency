@@ -67,8 +67,7 @@ export default function BlogPage() {
   const [slideIndex, setSlideIndex] = React.useState(0)
 
   const contactImages = [
-    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/Kelly_Talking_to_herself_gvknz9.jpg",
-    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/download_xuc0pn.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779245906/download_5_yrmcow.jpg",
   ]
 
   React.useEffect(() => {
@@ -123,10 +122,13 @@ export default function BlogPage() {
             </p>
           </motion.div>
         </div>
+        {/* Transition blend between Hero and Blog Posts */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* Blog Posts */}
       <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           {/* Posts grid */}
           <div className="grid gap-5 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -193,10 +195,13 @@ export default function BlogPage() {
             </Button>
           </div>
         </div>
+        {/* Transition blend between Blog Posts and CTA */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* CTA */}
       <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         <div className="relative mx-auto max-w-3xl px-5 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -245,6 +250,8 @@ export default function BlogPage() {
             </div>
           </motion.div>
         </div>
+        {/* Transition blend between CTA and Footer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
     </>
   )

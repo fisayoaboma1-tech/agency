@@ -148,10 +148,13 @@ export default function ProcessPage() {
             </p>
           </motion.div>
         </div>
+        {/* Transition blend between Hero and Timeline */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* Timeline */}
       <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         <div className="relative mx-auto max-w-4xl px-5 sm:px-6 lg:px-8">
           <div className="relative">
             {/* Vertical line */}
@@ -211,10 +214,13 @@ export default function ProcessPage() {
             </div>
           </div>
         </div>
+        {/* Transition blend between Timeline and Summary */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* Summary */}
       <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -269,10 +275,13 @@ export default function ProcessPage() {
             ))}
           </div>
         </div>
+        {/* Transition blend between Summary and CTA */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* CTA */}
       <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         <div className="relative mx-auto max-w-3xl px-5 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -319,6 +328,8 @@ export default function ProcessPage() {
             </div>
           </motion.div>
         </div>
+        {/* Transition blend between CTA and Footer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
     </>
   )

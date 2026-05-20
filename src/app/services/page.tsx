@@ -154,6 +154,8 @@ export default function ServicesPage() {
             </p>
           </motion.div>
         </div>
+        {/* Transition blend between Hero and Services */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* Service Details */}
@@ -167,6 +169,8 @@ export default function ServicesPage() {
               : "bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]"
           }`}
         >
+          {/* Top transition blend */}
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
           {/* Background image for Company Incorporation */}
           {index === 0 && (
             <div className="absolute inset-0 pointer-events-none select-none">
@@ -320,11 +324,15 @@ export default function ServicesPage() {
               </motion.div>
             </div>
           </div>
+          {/* Bottom transition blend to next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
         </section>
       ))}
 
       {/* CTA */}
       <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
+        {/* Top transition blend from last service */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         {/* Background image for CTA */}
         <div className="absolute inset-0 pointer-events-none select-none">
           <img
@@ -382,6 +390,8 @@ export default function ServicesPage() {
             </div>
           </motion.div>
         </div>
+        {/* Transition blend between CTA and Footer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
     </>
   )

@@ -3,8 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, ShieldCheck, Target, Eye, Users, Award, ChevronRight, Phone } from "lucide-react"
+import { ArrowRight, ShieldCheck, Target, Users, Award, ChevronRight, Phone } from "lucide-react"
 
 const values = [
   {
@@ -23,74 +22,50 @@ const values = [
     icon: Users,
   },
   {
+   
     title: "Reliability",
     desc: "We deliver on commitments with timely, accurate, and compliant results.",
     icon: Target,
   },
 ]
-
 const team = [
-  { name: "Dr. Andi Pratama", title: "Founder & Managing Director", expertise: "Corporate Law & Regulatory Compliance" },
-  { name: "Rina Wijaya", title: "Head of Certification", expertise: "SNI Certification & Product Compliance" },
-  { name: "David Kusuma", title: "Head of Business Development", expertise: "Market Entry Strategy & Client Relations" },
-  { name: "Siti Rahmawati", title: "Senior Legal Consultant", expertise: "Company Incorporation & Licensing" },
+  { name: "Dr. Andi Pratama", title: "Pendiri & Direktur Utama", expertise: "Hukum Perusahaan & Kepatuhan Regulasi", image: "https://res.cloudinary.com/dahp1ngcc/image/upload/v1778959635/WhatsApp_Image_2026-05-16_at_8.16.32_PM_otmktj.jpg" },
+  { name: "Rina Wijaya", title: "Kepala Sertifikasi", expertise: "Sertifikasi SNI & Kepatuhan Produk", image: "https://res.cloudinary.com/dahp1ngcc/image/upload/v1778959636/WhatsApp_Image_2026-05-16_at_8.16.33_PM_1_dkxu68.jpg" },
+  { name: "David Kusuma", title: "Kepala Pengembangan Bisnis", expertise: "Strategi Masuk Pasar & Hubungan Klien", image: "https://res.cloudinary.com/dahp1ngcc/image/upload/v1778959636/WhatsApp_Image_2026-05-16_at_8.16.33_PM_bfnxf2.jpg" },
+  { name: "Siti Rahmawati", title: "Konsultan Hukum Senior", expertise: "Pendirian Perusahaan & Perizinan", image: "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779193822/download_3_ldv9c7.jpg" },
 ]
 
 export default function AboutPage() {
-  const [slideIndex, setSlideIndex] = React.useState(0)
-
-  const contactImages = [
-    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/Kelly_Talking_to_herself_gvknz9.jpg",
-    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/download_xuc0pn.jpg",
-  ]
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % contactImages.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [contactImages.length])
-
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-24 pb-16 sm:py-24 lg:py-28 overflow-hidden">
+      {/* About PT. SSNI */}
+      <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none select-none">
-          {contactImages.map((src, i) => (
-            <div
-              key={i}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                i === slideIndex ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img
-                src={src}
-                alt=""
-                className="size-full object-cover"
-                aria-hidden="true"
-              />
-            </div>
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-[#0b1120]/40" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/60 via-transparent to-[#0b1120]/80" />
+          <img
+            src="https://res.cloudinary.com/dahp1ngcc/image/upload/v1779225861/Outsourcing_Philippines_gtsine.jpg"
+            alt=""
+            className="size-full object-cover"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1120]/95 via-[#0b1120]/80 to-[#0b1120]/95" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-transparent to-[#0b1120]/60" />
         </div>
-        <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             className="mx-auto max-w-3xl text-center"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20">
               <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
-              About Us
+              About
             </span>
-            <h1 className="mt-5 sm:mt-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            <h2 className="mt-5 sm:mt-6 text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
               About{" "}
               <span className="bg-gradient-to-r from-sky-200 via-white to-sky-100 bg-clip-text text-transparent">PT. SSNI</span>
-            </h1>
-            <p className="mt-4 sm:mt-5 text-xs sm:text-sm leading-relaxed text-white/40 max-w-2xl mx-auto">
+            </h2>
+            <p className="mt-4 sm:mt-5 text-xs sm:text-sm leading-relaxed text-white/60 max-w-2xl mx-auto">
               We are a specialized consulting firm dedicated to helping foreign companies
               successfully enter and operate in the Indonesian market. With deep regulatory
               expertise and a proven track record, we are your trusted partner for
@@ -98,9 +73,25 @@ export default function AboutPage() {
             </p>
           </motion.div>
         </div>
+        {/* Transition blend between sections */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
       {/* Why SSNI */}
-      <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
+        <div className="absolute inset-0 pointer-events-none select-none">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="size-full object-cover"
+          >
+            <source src="https://res.cloudinary.com/dahp1ngcc/video/upload/v1779244298/From_KlickPin_CF_Upgrade_these_beautiful_road_trip_ideas_to_make_your_next_project_easier_and_prettier_with_practical_inspiration_you_can_use_right_away_bookmark_-_Pin-88946161386807898_s88nt4.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/90 via-[#0b1120]/75 to-[#0b1120]/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+        </div>
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -124,9 +115,9 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
                 transition={{ delay: 0.05 }}
-                className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 sm:p-6 text-center shadow-xl transition-all duration-500 hover:border-white/20 hover:-translate-y-0.5"
+                className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 sm:p-6 text-left shadow-xl transition-all duration-500 hover:border-white/20 hover:-translate-y-0.5"
               >
-                <div className="mx-auto flex size-10 sm:size-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20">
+                <div className="flex size-10 sm:size-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20">
                   <v.icon className="size-5 sm:size-6 text-sky-300" />
                 </div>
                 <h3 className="mt-3 sm:mt-4 font-semibold text-sm sm:text-base text-white">{v.title}</h3>
@@ -135,10 +126,14 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
+        {/* Transition blend between Why SSNI and Our Expertise */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120] z-10" />
       </section>
 
       {/* Our Expertise */}
-      <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120]" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -191,10 +186,14 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
+        {/* Transition blend between Our Expertise and Team */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* Team */}
-      <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -209,7 +208,7 @@ export default function AboutPage() {
               Seasoned professionals with deep expertise in Indonesian business regulations.
             </p>
           </motion.div>
-          <div className="relative mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-5 lg:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="relative mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-5 lg:gap-6 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member) => (
               <motion.div
                 key={member.name}
@@ -217,12 +216,14 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
                 transition={{ delay: 0.05 }}
-                className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 sm:p-6 text-center shadow-xl transition-all duration-500 hover:border-white/20 hover:-translate-y-0.5"
+                className="rounded-xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-3 sm:p-4 text-center shadow-lg transition-all duration-500 hover:bg-white/[0.06] hover:-translate-y-0.5"
               >
-                <div className="mx-auto flex size-14 sm:size-16 items-center justify-center rounded-full bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 shadow-md">
-                  <span className="text-base sm:text-xl font-bold text-sky-300">
-                    {member.name.split(" ").map((n) => n[0]).join("")}
-                  </span>
+                <div className="mx-auto w-full max-w-[220px] rounded-xl overflow-hidden shadow-lg aspect-[3/4]">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="size-full object-cover"
+                  />
                 </div>
                 <h3 className="mt-3 sm:mt-4 font-semibold text-sm sm:text-base text-white">{member.name}</h3>
                 <p className="text-xs sm:text-sm text-white/60">{member.title}</p>
@@ -231,10 +232,13 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
+        {/* Transition blend between Team and CTA */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* CTA */}
       <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         <div className="relative mx-auto max-w-3xl px-5 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -276,6 +280,8 @@ export default function AboutPage() {
             </div>
           </motion.div>
         </div>
+        {/* Transition blend between CTA and Footer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
     </>
   )

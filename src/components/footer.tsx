@@ -48,6 +48,9 @@ const contactInfo = [
 export function Footer() {
   return (
     <footer className="relative overflow-hidden">
+      {/* Top transition blend from previous section */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-20" />
+
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

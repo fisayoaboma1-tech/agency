@@ -74,10 +74,13 @@ export default function ContactPage() {
             </p>
           </motion.div>
         </div>
+        {/* Transition blend between Hero and Contact Grid */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* Contact Grid */}
       <section className="relative py-14 sm:py-20 lg:py-28 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -210,10 +213,13 @@ export default function ContactPage() {
 
           </div>
         </div>
+        {/* Transition blend between Contact Grid and Quick CTA */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
       {/* Quick CTA */}
       <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
