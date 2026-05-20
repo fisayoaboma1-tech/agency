@@ -337,32 +337,41 @@ export default function HomePage() {
               {descriptionPhrases[descriptionIndex]}
             </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start gap-3 sm:gap-4"
-            >
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full sm:w-auto justify-center"
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="w-full sm:w-auto"
               >
-                <span className="relative z-10">Book a Consultation</span>
-                <span className="relative z-10 flex size-5 sm:size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300 group-hover:scale-110">
-                  <ArrowRight className="size-3 sm:size-3.5 transition-transform group-hover:translate-x-0.5" />
-                </span>
-              </Link>
-              <a
-                href="tel:+6285216412782"
-                className="group inline-flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.06] px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white w-full sm:w-auto justify-center"
+                <Link
+                  href="/contact"
+                  className="group relative inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full justify-center"
+                >
+                  <span className="relative z-10">Book a Consultation</span>
+                  <span className="relative z-10 flex size-5 sm:size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300 group-hover:scale-110">
+                    <ArrowRight className="size-3 sm:size-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="w-full sm:w-auto"
               >
-                <span className="relative flex size-2.5 sm:size-3">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex size-2.5 sm:size-3 rounded-full bg-green-500" />
-                </span>
-                Call +62 852 1641 2782
-              </a>
-            </motion.div>
+                <a
+                  href="tel:+6285216412782"
+                  className="group inline-flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.06] px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white w-full justify-center"
+                >
+                  <span className="relative flex size-2.5 sm:size-3">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex size-2.5 sm:size-3 rounded-full bg-green-500" />
+                  </span>
+                  Call +62 852 1641 2782
+                </a>
+              </motion.div>
+            </div>
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -381,10 +390,6 @@ export default function HomePage() {
               <span className="flex items-center gap-2">
                 <Globe className="size-3 sm:size-3.5" />
                 OSS-RBA
-              </span>
-              <span className="flex items-center gap-2">
-                <FileCheck className="size-3 sm:size-3.5" />
-                BKPM
               </span>
             </motion.div>
           </div>
