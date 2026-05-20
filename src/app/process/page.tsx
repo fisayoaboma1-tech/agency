@@ -89,10 +89,17 @@ const steps = [
 
 export default function ProcessPage() {
   const [slideIndex, setSlideIndex] = React.useState(0)
+  const [summarySlide, setSummarySlide] = React.useState(0)
 
   const contactImages = [
-    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/Kelly_Talking_to_herself_gvknz9.jpg",
-    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779191726/download_xuc0pn.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779247133/3_12_2025_vbct7a.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779247133/download_7_tchhj2.jpg",
+  ]
+
+  const summaryImages = [
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779247133/download_7_tchhj2.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779247133/3_12_2025_vbct7a.jpg",
+    "https://res.cloudinary.com/dahp1ngcc/image/upload/v1779247133/download_8_bpvlpo.jpg",
   ]
 
   React.useEffect(() => {
@@ -101,6 +108,13 @@ export default function ProcessPage() {
     }, 5000)
     return () => clearInterval(interval)
   }, [contactImages.length])
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setSummarySlide((prev) => (prev + 1) % summaryImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [summaryImages.length])
 
   return (
     <>
@@ -153,14 +167,14 @@ export default function ProcessPage() {
       </section>
 
       {/* Timeline */}
-      <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
+      <section className="relative py-12 sm:py-20 lg:py-28 bg-gradient-to-b from-[#0b1120] via-slate-950 to-[#0b1120] overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
-        <div className="relative mx-auto max-w-4xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="relative">
-            {/* Vertical line */}
-            <div className="hidden sm:block absolute left-8 top-0 h-full w-px bg-gradient-to-b from-sky-400/30 via-sky-400/10 to-transparent md:left-12" />
+            {/* Vertical line - desktop only */}
+            <div className="hidden md:block absolute left-12 top-0 h-full w-px bg-gradient-to-b from-sky-400/30 via-sky-400/10 to-transparent" />
 
-            <div className="space-y-10 sm:space-y-16">
+            <div className="space-y-6 sm:space-y-8 lg:space-y-16">
               {steps.map((step, index) => (
                 <motion.div
                   key={step.number}
@@ -168,42 +182,47 @@ export default function ProcessPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-30px" }}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
-                  className="relative sm:pl-20 md:pl-24"
+                  className="relative md:pl-24"
                 >
-                  {/* Circle on timeline */}
-                  <div className="hidden sm:flex absolute left-4 top-0 size-10 items-center justify-center rounded-full border-4 border-slate-900 bg-gradient-to-br from-sky-400/30 to-blue-500/20 text-sm font-bold text-sky-300 shadow-lg shadow-sky-400/10 md:left-6">
+                  {/* Circle on timeline - desktop only */}
+                  <div className="hidden md:flex absolute left-4 top-0 size-10 items-center justify-center rounded-full border-4 border-slate-900 bg-gradient-to-br from-sky-400/30 to-blue-500/20 text-sm font-bold text-sky-300 shadow-lg shadow-sky-400/10">
                     {step.number}
                   </div>
 
-                  <div className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 sm:p-6 lg:p-8 shadow-xl transition-all duration-500 hover:border-white/20">
-                    <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
-                      <div className="w-full">
-                        <div className="flex items-center gap-3">
-                          <span className="sm:hidden flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400/30 to-blue-500/20 border border-sky-400/20 text-xs font-bold text-sky-300">
-                            {step.number}
+                  <div className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-4 sm:p-6 lg:p-8 shadow-xl transition-all duration-500 hover:border-white/20">
+                    {/* Header row with number, icon, title, duration */}
+                    <div className="flex items-start gap-2.5 sm:gap-3">
+                      {/* Mobile number badge */}
+                      <span className="md:hidden flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400/30 to-blue-500/20 border border-sky-400/20 text-xs font-bold text-sky-300">
+                        {step.number}
+                      </span>
+                      <step.icon className="hidden sm:block size-5 sm:size-6 text-sky-300 shrink-0 mt-0.5" />
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <h2 className="text-sm sm:text-base lg:text-xl font-bold text-white break-words pr-1">
+                            {step.title}
+                          </h2>
+                          <span className="shrink-0 rounded-full bg-sky-400/10 border border-sky-400/20 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-sky-300 whitespace-nowrap">
+                            {step.duration}
                           </span>
-                          <step.icon className="size-5 sm:size-6 text-sky-300 shrink-0" />
-                          <h2 className="text-base sm:text-xl font-bold text-white">{step.title}</h2>
                         </div>
-                        <p className="mt-3 text-xs sm:text-sm lg:text-base text-white/50 leading-relaxed">
+                        <p className="mt-2 text-xs sm:text-sm lg:text-base text-white/50 leading-relaxed break-words">
                           {step.description}
                         </p>
                       </div>
-                      <div className="shrink-0 rounded-full bg-sky-400/10 border border-sky-400/20 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-sky-300 whitespace-nowrap ml-auto sm:ml-0">
-                        {step.duration}
-                      </div>
                     </div>
 
-                    <div className="mt-4 sm:mt-6">
-                      <h3 className="font-semibold text-xs sm:text-sm text-sky-300 mb-3 flex items-center gap-2">
+                    {/* Key Steps */}
+                    <div className="mt-4 sm:mt-6 pt-4 sm:pt-5 border-t border-white/10">
+                      <h3 className="font-semibold text-xs sm:text-sm text-sky-300 mb-2.5 sm:mb-3 flex items-center gap-1.5">
                         <span className="flex size-1.5 rounded-full bg-sky-400" />
                         Key Steps
                       </h3>
                       <div className="grid gap-1.5 sm:gap-2 grid-cols-1 sm:grid-cols-2">
                         {step.details.map((detail) => (
-                          <div key={detail} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/50">
-                            <CheckCircle className="mt-0.5 size-4 sm:size-4.5 shrink-0 text-sky-400/80" />
-                            <span>{detail}</span>
+                          <div key={detail} className="flex items-start gap-2 text-xs sm:text-sm text-white/50">
+                            <CheckCircle className="mt-0.5 size-3.5 sm:size-4 shrink-0 text-sky-400/80" />
+                            <span className="break-words">{detail}</span>
                           </div>
                         ))}
                       </div>
@@ -219,8 +238,28 @@ export default function ProcessPage() {
       </section>
 
       {/* Summary */}
-      <section className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120] overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
+        {/* Slideshow background images */}
+        <div className="absolute inset-0 pointer-events-none select-none">
+          {summaryImages.map((src, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                i === summarySlide ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <img
+                src={src}
+                alt=""
+                className="size-full object-cover"
+                aria-hidden="true"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/90 via-[#0b1120]/75 to-[#0b1120]/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+        </div>
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -250,13 +289,12 @@ export default function ProcessPage() {
                 title: "After Approval",
                 items: ["Certificate delivery", "Compliance monitoring", "Renewal management", "Ongoing advisory"],
               },
-            ].map((phase) => (
+            ].map((phase, idx) => (
               <motion.div
-                key={phase.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ delay: 0.08 }}
+                key={`${phase.title}-${summarySlide}`}
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.15, ease: "easeOut" }}
                 className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 sm:p-6 shadow-xl transition-all duration-500 hover:border-white/20"
               >
                 <h3 className="font-semibold text-sm sm:text-base text-white flex items-center gap-2">

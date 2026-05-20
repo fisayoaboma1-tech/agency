@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Logo } from "@/components/logo"
 import {
   Logs,
@@ -11,7 +11,6 @@ import {
   Briefcase,
   GitBranch,
   Users,
-  FileText,
   Mail,
   ChevronRight,
 } from "lucide-react"
@@ -23,13 +22,23 @@ const navLinks = [
   { name: "Services", href: "/services", icon: Briefcase },
   { name: "Process", href: "/process", icon: GitBranch },
   { name: "About", href: "/about", icon: Users },
-  { name: "Blog", href: "/blog", icon: FileText },
   { name: "Contact", href: "/contact", icon: Mail },
 ]
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+}
+
 export function Header() {
+  const router = useRouter()
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [scrolled, setScrolled] = React.useState(false)
+
+  function handleNavigation(href: string) {
+    scrollToTop()
+    setMenuOpen(false)
+    router.push(href)
+  }
 
   React.useEffect(() => {
     let ticking = false
@@ -75,20 +84,20 @@ export function Header() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
-          <Link href="/" aria-label="Home" className="flex shrink-0">
+          <button onClick={() => handleNavigation("/")} aria-label="Home" className="flex shrink-0 cursor-pointer">
             <Logo light />
-          </Link>
+          </button>
 
           {/* Desktop nav */}
           <ul className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm font-medium text-white/80 transition-colors hover:text-white"
+                <button
+                  onClick={() => handleNavigation(link.href)}
+                  className="text-sm font-medium text-white/80 transition-colors hover:text-white cursor-pointer"
                 >
                   {link.name}
-                </Link>
+                </button>
               </li>
             ))}
           </ul>
@@ -156,9 +165,9 @@ export function Header() {
             >
               {/* Drawer header */}
               <div className="flex items-center px-6 py-5">
-                <Link href="/" aria-label="Home" className="flex shrink-0">
+                <button onClick={() => handleNavigation("/")} aria-label="Home" className="flex shrink-0 cursor-pointer">
                   <Logo light />
-                </Link>
+                </button>
               </div>
               <div className="flex-1 overflow-y-auto px-6 py-6">
                 <span className="mb-4 block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
@@ -169,17 +178,16 @@ export function Header() {
                     const Icon = link.icon
                     return (
                       <li key={link.href}>
-                        <Link
-                          href={link.href}
-                          onClick={() => setMenuOpen(false)}
-                          className="group flex items-center gap-3.5 rounded-xl px-3.5 py-3 text-sm font-medium text-white/55 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white"
+                        <button
+                          onClick={() => handleNavigation(link.href)}
+                          className="group flex w-full items-center gap-3.5 rounded-xl px-3.5 py-3 text-sm font-medium text-white/55 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white cursor-pointer text-left"
                         >
                           <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.07] bg-white/[0.05] text-white/40 shadow-sm transition-colors duration-150 group-hover:border-white/25 group-hover:bg-white/10 group-hover:text-white">
                             <Icon className="size-4" />
                           </span>
                           <span className="flex-1">{link.name}</span>
                           <ChevronRight className="size-4 text-white/25 transition-transform duration-150 group-hover:translate-x-0.5" />
-                        </Link>
+                        </button>
                       </li>
                     )
                   })}

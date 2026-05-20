@@ -242,7 +242,7 @@ export default function ServicesPage() {
             </div>
           )}
           <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-2">
+            <div className="flex flex-col gap-6 sm:gap-8 lg:grid lg:grid-cols-2 lg:gap-12">
               {/* Left: Details */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -251,39 +251,39 @@ export default function ServicesPage() {
                 transition={{ duration: 0.4 }}
                 className="w-full min-w-0"
               >
-                <div className="flex size-10 sm:size-12 lg:size-14 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 mb-4 sm:mb-5 lg:mb-6">
-                  <service.icon className="size-5 sm:size-6 lg:size-7 text-sky-300" />
+                <div className="flex size-9 sm:size-12 lg:size-14 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20 mb-3 sm:mb-5 lg:mb-6">
+                  <service.icon className="size-4 sm:size-6 lg:size-7 text-sky-300" />
                 </div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-white">
+                <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold tracking-tight text-white break-words">
                   {service.title}
                 </h2>
-                <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg leading-relaxed text-white/60">
+                <p className="mt-2 sm:mt-4 text-sm sm:text-base lg:text-lg leading-relaxed text-white/60 break-words">
                   {service.description}
                 </p>
-                <div className="mt-6 sm:mt-8">
-                  <h3 className="font-semibold text-sm sm:text-base text-sky-300 mb-3 sm:mb-4 flex items-center gap-2">
+                <div className="mt-5 sm:mt-8">
+                  <h3 className="font-semibold text-xs sm:text-base text-sky-300 mb-2.5 sm:mb-4 flex items-center gap-2">
                     <span className="flex size-1.5 rounded-full bg-sky-400" />
                     Key Benefits
                   </h3>
-                  <ul className="space-y-2 sm:space-y-2.5">
+                  <ul className="space-y-1.5 sm:space-y-2.5">
                     {service.benefits.map((benefit) => (
-                      <li key={benefit} className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-white/50">
-                        <CheckCircle className="mt-0.5 size-4 sm:size-4.5 shrink-0 text-sky-400/80" />
+                      <li key={benefit} className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-white/50">
+                        <CheckCircle className="mt-0.5 size-3.5 sm:size-4.5 shrink-0 text-sky-400/80" />
                         <span className="break-words">{benefit}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="mt-6 sm:mt-8 rounded-xl border border-sky-400/10 bg-gradient-to-b from-sky-400/5 to-transparent p-4 sm:p-5 w-full">
+                <div className="mt-5 sm:mt-8 rounded-xl border border-sky-400/10 bg-gradient-to-b from-sky-400/5 to-transparent p-3.5 sm:p-5 w-full">
                   <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-sky-300/60">
                     Ideal for
                   </p>
-                  <p className="mt-1.5 text-xs sm:text-sm text-white/60 leading-relaxed">{service.suitable}</p>
+                  <p className="mt-1.5 text-xs sm:text-sm text-white/60 leading-relaxed break-words">{service.suitable}</p>
                 </div>
-                <div className="mt-6 sm:mt-8">
+                <div className="mt-5 sm:mt-8">
                   <Link
                     href="/contact"
-                    className="group relative inline-flex items-center gap-2.5 sm:gap-3 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-5 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full sm:w-auto justify-center sm:justify-start"
+                    className="group relative inline-flex items-center gap-2 sm:gap-3 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-5 sm:px-8 py-3 sm:py-3.5 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full sm:w-auto justify-center"
                   >
                     <span className="relative z-10">Get Started</span>
                     <span className="relative z-10 flex size-4 sm:size-5 items-center justify-center rounded-full bg-white/20 transition-all duration-300 group-hover:scale-110 group-hover:bg-white/30">
@@ -301,18 +301,18 @@ export default function ServicesPage() {
                 transition={{ duration: 0.4 }}
                 className="w-full min-w-0"
               >
-                <div className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-5 sm:p-6 lg:p-8 shadow-xl transition-all duration-500 hover:border-white/20 w-full">
-                  <h3 className="text-base sm:text-lg font-semibold text-white flex items-center gap-2">
+                <div className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-4 sm:p-6 lg:p-8 shadow-xl transition-all duration-500 hover:border-white/20 w-full">
+                  <h3 className="text-sm sm:text-lg font-semibold text-white flex items-center gap-2">
                     <span className="flex size-2 rounded-full bg-sky-400" />
                     Why This Matters
                   </h3>
-                  <p className="mt-4 text-xs sm:text-sm text-white/50 leading-relaxed">
+                  <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-white/50 leading-relaxed break-words">
                     {whyThisMatters[service.id as keyof typeof whyThisMatters]}
                   </p>
-                  <div className="mt-6 pt-5 border-t border-white/10">
+                  <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-white/10">
                     <div className="flex items-center gap-3">
-                      <div className="flex size-9 sm:size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400/20 to-sky-400/10 border border-sky-400/20">
-                        <span className="text-sm sm:text-base font-bold text-sky-300">✓</span>
+                      <div className="flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400/20 to-sky-400/10 border border-sky-400/20">
+                        <span className="text-xs sm:text-base font-bold text-sky-300">✓</span>
                       </div>
                       <div className="min-w-0">
                         <div className="font-medium text-xs sm:text-sm text-white/80">Trusted by 50+ companies</div>

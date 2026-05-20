@@ -1,4 +1,7 @@
-import Link from "next/link"
+"use client"
+
+import React from "react"
+import { useRouter } from "next/navigation"
 import { Logo } from "@/components/logo"
 import { Phone, Mail, MapPin } from "lucide-react"
 
@@ -13,7 +16,6 @@ const footerLinks = {
   company: [
     { name: "About Us", href: "/about" },
     { name: "Our Process", href: "/process" },
-    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
 }
@@ -46,6 +48,13 @@ const contactInfo = [
 ]
 
 export function Footer() {
+  const router = useRouter()
+
+  function handleNavigation(href: string) {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior })
+    router.push(href)
+  }
+
   return (
     <footer className="relative overflow-hidden">
       {/* Top transition blend from previous section */}
@@ -75,7 +84,9 @@ export function Footer() {
           <div className="grid gap-12 sm:gap-14 lg:grid-cols-12 lg:gap-10">
             {/* Brand - wide column */}
             <div className="lg:col-span-4 space-y-5">
-              <Logo />
+              <button onClick={() => handleNavigation("/")} className="text-left cursor-pointer">
+                <Logo />
+              </button>
               {/* Tagline */}
               <p className="text-[14px] text-white/70 leading-relaxed max-w-xs">
                 Trusted partner for foreign companies entering the Indonesian market. 
@@ -91,12 +102,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.services.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-[14px] text-gray-400 hover:text-white transition-colors duration-300"
+                    <button
+                      onClick={() => handleNavigation(link.href)}
+                      className="text-[14px] text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-left"
                     >
                       {link.name}
-                    </Link>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -110,12 +121,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-[14px] text-gray-400 hover:text-white transition-colors duration-300"
+                    <button
+                      onClick={() => handleNavigation(link.href)}
+                      className="text-[14px] text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-left"
                     >
                       {link.name}
-                    </Link>
+                    </button>
                   </li>
                 ))}
               </ul>
