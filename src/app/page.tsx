@@ -81,11 +81,47 @@ const testimonials = [
   },
 ]
 
+// Animated counter component: counts from 0 → target, resets, loops
+function AnimatedCounter({ target, suffix = "", interval = 7000 }: { target: number; suffix?: string; interval?: number }) {
+  const [count, setCount] = React.useState(0)
+  const [phase, setPhase] = React.useState<"counting" | "holding" | "resetting">("counting")
+
+  React.useEffect(() => {
+    const steps = Math.min(target, 40) // number of increments
+    const increment = target / steps
+    const delay = 60 // ms per increment
+
+    let current = 0
+    const timer = setInterval(() => {
+      current += increment
+      if (current >= target) {
+        current = target
+        setCount(target)
+        clearInterval(timer)
+        setPhase("holding")
+        // hold for 5s, then reset and recount
+        setTimeout(() => {
+          setPhase("resetting")
+          setCount(0)
+          setTimeout(() => setPhase("counting"), 300)
+        }, 5000)
+      } else {
+        setCount(Math.floor(current))
+      }
+    }, delay)
+
+    return () => clearInterval(timer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase === "counting"])
+
+  return <>{count}{suffix}</>
+}
+
 const stats = [
-  { value: "50+", label: "Foreign Companies Served" },
-  { value: "98%", label: "Success Rate" },
-  { value: "5+", label: "Years of Expertise" },
-  { value: "100%", label: "Compliance Guaranteed" },
+  { value: 50, suffix: "+", label: "Foreign Companies Served" },
+  { value: 98, suffix: "%", label: "Success Rate" },
+  { value: 5, suffix: "+", label: "Years of Expertise" },
+  { value: 100, suffix: "%", label: "Compliance Guaranteed" },
 ]
 
 const faqs = [
@@ -364,7 +400,7 @@ export default function HomePage() {
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-4xl font-bold bg-gradient-to-b from-white to-slate-300 bg-clip-text text-transparent">
-                  {stat.value}
+                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="mt-2 text-sm text-white/40">{stat.label}</div>
               </div>
