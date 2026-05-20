@@ -218,16 +218,16 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section — the video is fixed so it covers the whole viewport (behind header + hero) */}
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none select-none">
+        <div className="fixed inset-0 pointer-events-none select-none -z-10">
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="none"
-            className="size-full object-contain"
+            className="size-full object-cover"
             src="https://res.cloudinary.com/dahp1ngcc/video/upload/v1779166821/From_KlickPin_CF_Beautiful_Short_Hair_Inspiration_on_a_Budget_-_Pin-337277459614765000_m3jhge.mp4"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-900/50 to-slate-950/70" />
