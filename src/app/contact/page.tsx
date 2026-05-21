@@ -233,10 +233,10 @@ export default function ContactPage() {
                     </div>
                     <div className="min-w-0">
                       <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">Primary Contact</p>
-                      <a href="tel:+6285216412782" className="text-sm sm:text-base text-white hover:text-sky-300 transition-colors">
-                        +62 852 1641 2782
+                      <a href="tel:+6283161698888" className="text-sm sm:text-base text-white hover:text-sky-300 transition-colors">
+                        +62 831 6169 8888
                       </a>
-                      <p className="mt-0.5 text-[11px] text-white/30">Secondary: +62 831 6169 8888</p>
+                      <p className="mt-0.5 text-[11px] text-white/30">Secondary: +62 852 1641 2782</p>
                     </div>
                   </div>
 
@@ -282,7 +282,7 @@ export default function ContactPage() {
 
                 <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
                   <a
-                    href="https://wa.me/6285216412782"
+                href="https://wa.me/6285691569538"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-emerald-500 to-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"

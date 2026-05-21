@@ -320,14 +320,14 @@ export default function HomePage() {
                   className="w-full sm:w-auto"
                 >
                   <a
-                    href="tel:+6285216412782"
+                    href="tel:+6283161698888"
                     className="group inline-flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.06] px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white w-full justify-center"
                   >
                     <span className="relative flex size-2.5 sm:size-3">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                       <span className="relative inline-flex size-2.5 sm:size-3 rounded-full bg-green-500" />
                     </span>
-                    Call +62 852 1641 2782
+                    Call +62 831 6169 8888
                   </a>
                 </motion.div>
               </div>
@@ -771,7 +771,7 @@ export default function HomePage() {
               </span>
             </Link>
             <a
-              href="https://wa.me/6285216412782"
+              href="https://wa.me/6285691569538"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 rounded-xl border border-white/15 bg-white/[0.06] px-8 sm:px-9 py-4 sm:py-4.5 text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 shadow-lg shadow-black/20"
