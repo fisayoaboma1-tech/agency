@@ -200,11 +200,11 @@ export function Footer() {
                         Address
                       </span>
                       <span className="text-[14px] text-gray-400 leading-relaxed">
-                        OCBD Park, Jl. Cahaya Raya Blok H10 No. 11
+                        Komplek Duta Harapan Indah Blok KK No.6
                         <br />
-                        Kawasan Industri Sentul, Bogor
+                        Kelurahan Kapuk Muara, Kecamatan Penjaringan
                         <br />
-                        Jawa Barat, Indonesia
+                        Jakarta Utara, North Jakarta
                       </span>
                     </div>
                   </div>

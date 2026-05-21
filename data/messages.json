@@ -1,0 +1,22 @@
+[
+  {
+    "id": "34dab673-3303-42eb-8d79-6943f3c59a1f",
+    "name": "Sativa halo",
+    "email": "sativa@gmail.com",
+    "company": "heloa",
+    "service": "incorporation",
+    "message": "reply asap\n",
+    "createdAt": "2026-05-21T16:02:28.272Z",
+    "read": false
+  },
+  {
+    "id": "04b8a31c-6acc-4e73-b743-c8e7c7fa9e3d",
+    "name": "Frank gilly",
+    "email": "sativa@gmail.com",
+    "company": "taola",
+    "service": "import-export",
+    "message": "Good",
+    "createdAt": "2026-05-21T17:46:27.461Z",
+    "read": false
+  }
+]

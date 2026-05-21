@@ -8,11 +8,50 @@ import { Phone, ArrowRight, Send, CheckCircle, Mail, MapPin, Clock } from "lucid
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = React.useState(false)
+  const [submitting, setSubmitting] = React.useState(false)
+  const [error, setError] = React.useState("")
   const [slideIndex, setSlideIndex] = React.useState(0)
+
+  // Form state
+  const [name, setName] = React.useState("")
+  const [email, setEmail] = React.useState("")
+  const [company, setCompany] = React.useState("")
+  const [service, setService] = React.useState("")
+  const [message, setMessage] = React.useState("")
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setError("")
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, company, service, message }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || "Failed to send message.")
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.")
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  function resetForm() {
+    setSubmitted(false)
+    setName("")
+    setEmail("")
+    setCompany("")
+    setService("")
+    setMessage("")
+    setError("")
   }
 
   // Image slideshow for contact section
@@ -120,7 +159,7 @@ export default function ContactPage() {
                   <Button
                     className="mt-5 sm:mt-6 border border-white/20 bg-white/10 text-white hover:bg-white/20 text-xs sm:text-sm"
                     variant="outline"
-                    onClick={() => setSubmitted(false)}
+                    onClick={resetForm}
                   >
                     Send Another Message
                   </Button>
@@ -136,6 +175,8 @@ export default function ContactPage() {
                         id="name"
                         type="text"
                         required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         placeholder="Enter your full name"
                         className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08]"
                         autoComplete="name"
@@ -149,6 +190,8 @@ export default function ContactPage() {
                         id="email"
                         type="email"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your email address"
                         className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08]"
                         autoComplete="email"
@@ -163,6 +206,8 @@ export default function ContactPage() {
                     <input
                       id="company"
                       type="text"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
                       placeholder="Enter your company name"
                       className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08]"
                       autoComplete="organization"
@@ -175,6 +220,8 @@ export default function ContactPage() {
                     </label>
                     <select
                       id="service"
+                      value={service}
+                      onChange={(e) => setService(e.target.value)}
                       className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08]"
                     >
                       <option value="" className="bg-slate-900">Select a service...</option>
@@ -195,18 +242,27 @@ export default function ContactPage() {
                       id="message"
                       required
                       rows={5}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       placeholder="Tell us about your project and how we can help..."
                       className="mt-1 sm:mt-1.5 block w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-[16px] sm:text-base shadow-sm text-white placeholder:text-white/30 focus:border-sky-400/40 focus:outline-none focus:ring-1 focus:ring-sky-400/30 backdrop-blur-sm transition-all duration-200 hover:bg-white/[0.08] resize-y min-h-[130px]"
                     />
                   </div>
 
+                  {error && (
+                    <p className="text-sm text-red-400 bg-red-500/10 rounded-lg px-4 py-2.5">
+                      {error}
+                    </p>
+                  )}
+
                   <Button
                     type="submit"
+                    disabled={submitting}
                     size="lg"
-                    className="w-full gap-2.5 bg-gradient-to-b from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white text-sm sm:text-base py-3.5 sm:py-4 shadow-lg shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/30 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+                    className="w-full gap-2.5 bg-gradient-to-b from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white text-sm sm:text-base py-3.5 sm:py-4 shadow-lg shadow-sky-500/20 hover:shadow-xl hover:shadow-sky-500/30 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="size-4 sm:size-4.5 shrink-0" />
-                    <span>Send Message</span>
+                    <span>{submitting ? "Sending..." : "Send Message"}</span>
                   </Button>
                 </form>
               )}
@@ -259,11 +315,11 @@ export default function ContactPage() {
                     <div className="min-w-0">
                       <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">Address</p>
                       <p className="text-sm sm:text-base text-white leading-relaxed">
-                        OCBD Park, Jl. Cahaya Raya Blok H10 No. 11
+                        Komplek Duta Harapan Indah Blok KK No.6
                         <br />
-                        Kawasan Industri Sentul, Bogor
+                        Kelurahan Kapuk Muara, Kecamatan Penjaringan
                         <br />
-                        Jawa Barat, Indonesia
+                        Jakarta Utara, North Jakarta
                       </p>
                     </div>
                   </div>
