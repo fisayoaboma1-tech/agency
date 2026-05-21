@@ -227,128 +227,157 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-slate-900/50 to-slate-950/70" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/60 via-transparent to-slate-950/30" />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-12 lg:px-16 pt-6 sm:pt-8">
-          <div className="w-full lg:max-w-[45%] xl:max-w-[42%]">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-6 sm:mb-8  inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-3.5 sm:px-4 py-1.5 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20"
-            >
-              <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
-              Trusted by 50+ international companies
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] font-black tracking-tight text-white leading-[1.05] text-left min-h-[1.2em]"
-            >
-              <motion.span
-                className="block font-black [text-shadow:0_0_2px_#fff,0_0_4px_rgba(255,255,255,0.3),0_0_8px_rgba(255,255,255,0.1)]"
-                animate={
-                  swapPhase === "exiting"
-                    ? { x: 200, opacity: 0 }
-                    : swapPhase === "entering"
-                    ? { x: -200, opacity: 0 }
-                    : { x: 0, opacity: 1 }
-                }
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                {headingWords[headingIndex]} BUSINESS
-              </motion.span>
-              <motion.span
-                className="block mt-1 sm:mt-2 bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent"
-                animate={
-                  taglinePhase === "exiting"
-                    ? { x: 200, opacity: 0 }
-                    : taglinePhase === "entering"
-                    ? { x: -200, opacity: 0 }
-                    : { x: 0, opacity: 1 }
-                }
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                {taglineWords[taglineIndex]} INTO INDONESIA
-              </motion.span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-5 sm:mt-6"
-            >
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-4 py-1.5 sm:px-5 sm:py-2 shadow-inner shadow-white/5">
-                <span className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/70">
-                  <span className="text-white/70 font-medium">Specializing in</span>
-                  <span className="text-white/30">|</span>
-                  <span className="font-medium text-white">Market Entry Strategy</span>
-                </span>
-              </div>
-            </motion.div>
-
-            <p
-              className="mt-6 sm:mt-8 text-sm sm:text-base lg:text-lg leading-relaxed text-white/60 font-light tracking-wide text-left max-w-xl"
-            >
-              {descriptionPhrases[descriptionIndex]}
-            </p>
-
-            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-12 lg:px-16 pt-6 sm:pt-8 lg:pt-30">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full">
+            {/* Left content area */}
+            <div className="w-full lg:w-[55%] xl:w-[50%] 2xl:w-[48%] max-w-2xl lg:max-w-none">
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="w-full sm:w-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-6 sm:mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-3.5 sm:px-4 py-1.5 text-[10px] sm:text-xs font-medium tracking-wider uppercase text-white/60 backdrop-blur-sm shadow-lg shadow-black/20"
               >
-                <Link
-                  href="/contact"
-                  className="group relative inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full justify-center"
-                >
-                  <span className="relative z-10">Book a Consultation</span>
-                  <span className="relative z-10 flex size-5 sm:size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300 group-hover:scale-110">
-                    <ArrowRight className="size-3 sm:size-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </Link>
+                <span className="flex size-1.5 rounded-full bg-sky-400 shadow-lg shadow-sky-400/50" />
+                Trusted by 50+ international companies
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
+
+              <motion.h1
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="w-full sm:w-auto"
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] 2xl:text-[4.25rem] font-black tracking-tight text-white leading-[1.05] text-left min-h-[1.2em]"
               >
-                <a
-                  href="tel:+6285216412782"
-                  className="group inline-flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.06] px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white w-full justify-center"
+                <motion.span
+                  className="block font-black [text-shadow:0_0_2px_#fff,0_0_4px_rgba(255,255,255,0.3),0_0_8px_rgba(255,255,255,0.1)]"
+                  animate={
+                    swapPhase === "exiting"
+                      ? { x: 200, opacity: 0 }
+                      : swapPhase === "entering"
+                      ? { x: -200, opacity: 0 }
+                      : { x: 0, opacity: 1 }
+                  }
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
-                  <span className="relative flex size-2.5 sm:size-3">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                    <span className="relative inline-flex size-2.5 sm:size-3 rounded-full bg-green-500" />
+                  {headingWords[headingIndex]} BUSINESS
+                </motion.span>
+                <motion.span
+                  className="block mt-1 sm:mt-2 bg-gradient-to-r from-sky-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent"
+                  animate={
+                    taglinePhase === "exiting"
+                      ? { x: 200, opacity: 0 }
+                      : taglinePhase === "entering"
+                      ? { x: -200, opacity: 0 }
+                      : { x: 0, opacity: 1 }
+                  }
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  {taglineWords[taglineIndex]} INTO INDONESIA
+                </motion.span>
+              </motion.h1>
+
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mt-5 sm:mt-6"
+              >
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-4 py-1.5 sm:px-5 sm:py-2 shadow-inner shadow-white/5">
+                  <span className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/70">
+                    <span className="text-white/70 font-medium">Specializing in</span>
+                    <span className="text-white/30">|</span>
+                    <span className="font-medium text-white">Market Entry Strategy</span>
                   </span>
-                  Call +62 852 1641 2782
-                </a>
+                </div>
+              </motion.div>
+
+              <p
+                className="mt-6 sm:mt-8 text-sm sm:text-base lg:text-lg leading-relaxed text-white/60 font-light tracking-wide text-left max-w-xl"
+              >
+                {descriptionPhrases[descriptionIndex]}
+              </p>
+
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="w-full sm:w-auto"
+                >
+                  <Link
+                    href="/contact"
+                    className="group relative inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-b from-sky-500 to-sky-600 px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-semibold text-white shadow-lg shadow-sky-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden w-full justify-center"
+                  >
+                    <span className="relative z-10">Book a Consultation</span>
+                    <span className="relative z-10 flex size-5 sm:size-6 items-center justify-center rounded-full bg-white/20 text-white transition-all duration-300 group-hover:scale-110">
+                      <ArrowRight className="size-3 sm:size-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="w-full sm:w-auto"
+                >
+                  <a
+                    href="tel:+6285216412782"
+                    className="group inline-flex items-center gap-2.5 rounded-xl border border-white/15 bg-white/[0.06] px-6 py-3.5 sm:px-7 sm:py-4 text-sm sm:text-base font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white w-full justify-center"
+                  >
+                    <span className="relative flex size-2.5 sm:size-3">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                      <span className="relative inline-flex size-2.5 sm:size-3 rounded-full bg-green-500" />
+                    </span>
+                    Call +62 852 1641 2782
+                  </a>
+                </motion.div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="mt-12 sm:mt-16 flex flex-wrap items-center gap-x-6 sm:gap-x-10 gap-y-3 text-white/30 text-[11px] sm:text-xs tracking-widest uppercase"
+              >
+                <span className="flex items-center gap-2">
+                  <Building2 className="size-3 sm:size-3.5" />
+                  PT PMA
+                </span>
+                <span className="flex items-center gap-2">
+                  <ShieldCheck className="size-3 sm:size-3.5" />
+                  SNI Certified
+                </span>
+                <span className="flex items-center gap-2">
+                  <Globe className="size-3 sm:size-3.5" />
+                  OSS-RBA
+                </span>
               </motion.div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-12 sm:mt-16 flex flex-wrap items-center gap-x-6 sm:gap-x-10 gap-y-3 text-white/30 text-[11px] sm:text-xs tracking-widest uppercase"
-            >
-              <span className="flex items-center gap-2">
-                <Building2 className="size-3 sm:size-3.5" />
-                PT PMA
-              </span>
-              <span className="flex items-center gap-2">
-                <ShieldCheck className="size-3 sm:size-3.5" />
-                SNI Certified
-              </span>
-              <span className="flex items-center gap-2">
-                <Globe className="size-3 sm:size-3.5" />
-                OSS-RBA
-              </span>
-            </motion.div>
+            {/* Right decorative area - desktop only */}
+            <div className="hidden lg:block lg:w-[45%] xl:w-[50%] 2xl:w-[52%] lg:pl-12 xl:pl-16">
+              <div className="flex flex-col items-end space-y-6">
+                {/* Animated stats or decorative content */}
+                <div className="text-right">
+                  <div className="inline-flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-sm px-6 py-4 shadow-lg">
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-black text-white/90">50+</span>
+                      <span className="text-[10px] uppercase tracking-widest text-white/30">Companies Served</span>
+                    </div>
+                    <div className="w-px h-12 bg-white/10" />
+                    <div className="flex flex-col">
+                      <span className="text-3xl font-black text-sky-300">88%</span>
+                      <span className="text-[10px] uppercase tracking-widest text-white/30">Success Rate</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs text-emerald-300/80">
+                    <span className="flex size-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Available for consultations
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0b1120] via-[#0b1120]/70 to-transparent" />
@@ -405,7 +434,7 @@ export default function HomePage() {
               Everything you need to establish and grow your business in Indonesia — all under one roof.
             </p>
           </div>
-          <div className="-mt-17 sm:mt-16 grid gap-5 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2">
+          <div className="mt-12 sm:mt-16 grid gap-5 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2">
             {services.map((service) => {
               const Icon = service.icon
               return (
@@ -728,7 +757,7 @@ export default function HomePage() {
               Contact Us
             </span>
           </h2>
-          <p className="mx-auto mt-6 sm:mt-8 max-w-2xl text-xs sm:text-sm leading-relaxed text-white/40 max-w-2xl mx-auto">
+          <p className="mx-auto mt-6 sm:mt-8 max-w-2xl text-xs sm:text-sm leading-relaxed text-white/40">
             Ready to expand your business into Indonesia? Get in touch with our team for a free consultation. We typically respond within 24 hours.
           </p>
           <div className="mt-10 sm:mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">

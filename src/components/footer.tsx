@@ -78,9 +78,9 @@ export function Footer() {
       {/* Ambient glow top */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 w-[600px] h-[300px] bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Main content */}
-        <div className="py-16 lg:py-20">
+        <div className="py-16 lg:py-24">
           <div className="grid gap-12 sm:gap-14 lg:grid-cols-12 lg:gap-10">
             {/* Brand - wide column */}
             <div className="lg:col-span-4 space-y-5">
@@ -93,7 +93,7 @@ export function Footer() {
             </div>
 
             {/* Services */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-2">
               <h3 className="mb-5 text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-100">
                 Services
               </h3>
@@ -112,7 +112,7 @@ export function Footer() {
             </div>
 
             {/* Company */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 lg:col-start-7">
               <h3 className="mb-5 text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-100">
                 Company
               </h3>
@@ -131,7 +131,7 @@ export function Footer() {
             </div>
 
             {/* Contact */}
-            <div className="lg:col-span-3">
+            <div className="lg:col-span-4">
               <h3 className="mb-5 text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-100">
                 Contact
               </h3>

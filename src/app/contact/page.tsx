@@ -4,7 +4,7 @@ import React from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
-import { Phone, ArrowRight, Send, CheckCircle } from "lucide-react"
+import { Phone, ArrowRight, Send, CheckCircle, Mail, MapPin, Clock } from "lucide-react"
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = React.useState(false)
@@ -93,9 +93,10 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-black/40" />
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-2">
+          <div className="grid gap-8 sm:gap-10 lg:gap-12 lg:grid-cols-5">
             {/* Contact Form */}
-            <motion.div
+            <div className="lg:col-span-3 w-full">
+              <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -210,7 +211,96 @@ export default function ContactPage() {
                 </form>
               )}
             </motion.div>
+            </div>
 
+            {/* Contact Info Sidebar */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-2"
+            >
+              <div className="rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl p-6 sm:p-8 shadow-xl">
+                <h3 className="text-lg sm:text-xl font-bold text-white">Contact Information</h3>
+                <p className="mt-1.5 text-sm text-white/50">
+                  Reach out through any of these channels.
+                </p>
+
+                <div className="mt-6 sm:mt-8 space-y-5 sm:space-y-6">
+                  <div className="flex items-start gap-4 group">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20">
+                      <Phone className="size-4 sm:size-5 text-sky-300" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">Primary Contact</p>
+                      <a href="tel:+6285216412782" className="text-sm sm:text-base text-white hover:text-sky-300 transition-colors">
+                        +62 852 1641 2782
+                      </a>
+                      <p className="mt-0.5 text-[11px] text-white/30">Secondary: +62 831 6169 8888</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 group">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20">
+                      <Mail className="size-4 sm:size-5 text-sky-300" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">Email</p>
+                      <a href="mailto:support@ptkbb.id" className="text-sm sm:text-base text-white hover:text-sky-300 transition-colors break-all">
+                        support@ptkbb.id
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20">
+                      <MapPin className="size-4 sm:size-5 text-sky-300" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">Address</p>
+                      <p className="text-sm sm:text-base text-white leading-relaxed">
+                        OCBD Park, Jl. Cahaya Raya Blok H10 No. 11
+                        <br />
+                        Kawasan Industri Sentul, Bogor
+                        <br />
+                        Jawa Barat, Indonesia
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400/20 to-blue-500/10 border border-sky-400/20">
+                      <Clock className="size-4 sm:size-5 text-sky-300" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-white/40">Business Hours</p>
+                      <p className="text-sm sm:text-base text-white">Monday – Friday</p>
+                      <p className="text-sm text-white/50">9:00 AM – 5:00 PM (WIB)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/10">
+                  <a
+                    href="https://wa.me/6285216412782"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-b from-emerald-500 to-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
+                  >
+                    <span className="relative z-10">Chat on WhatsApp</span>
+                    <span className="relative z-10 flex size-4 items-center justify-center rounded-full bg-white/20 transition-all duration-300">
+                      <ArrowRight className="size-3" />
+                    </span>
+                  </a>
+                </div>
+
+                <div className="mt-4 rounded-lg border border-sky-400/10 bg-gradient-to-b from-sky-400/5 to-transparent p-3.5">
+                  <p className="text-[11px] text-center text-sky-300/60 leading-relaxed">
+                    We typically respond within <span className="font-semibold text-sky-300/80">24 hours</span>
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
         {/* Transition blend between Contact Grid and Quick CTA */}
