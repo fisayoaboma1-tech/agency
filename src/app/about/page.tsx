@@ -190,52 +190,6 @@ export default function AboutPage() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
       </section>
 
-      {/* Team */}
-      <section className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]" />
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className="mx-auto max-w-2xl text-center"
-          >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight">
-              Leadership Team
-            </h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-white/40 max-w-xl mx-auto">
-              Seasoned professionals with deep expertise in Indonesian business regulations.
-            </p>
-          </motion.div>
-          <div className="relative mt-8 sm:mt-10 lg:mt-12 grid gap-4 sm:gap-5 lg:gap-6 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ delay: 0.05 }}
-                className="rounded-xl bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-3 sm:p-4 text-center shadow-lg transition-all duration-500 hover:bg-white/[0.06] hover:-translate-y-0.5"
-              >
-                <div className="mx-auto w-full max-w-[220px] rounded-xl overflow-hidden shadow-lg aspect-[3/4]">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="size-full object-cover"
-                  />
-                </div>
-                <h3 className="mt-3 sm:mt-4 font-semibold text-sm sm:text-base text-white">{member.name}</h3>
-                <p className="text-xs sm:text-sm text-white/60">{member.title}</p>
-                <p className="mt-1 text-[10px] sm:text-xs text-white/30">{member.expertise}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        {/* Transition blend between Team and CTA */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#0b1120]" />
-      </section>
-
       {/* CTA */}
       <section className="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-950 to-[#0b1120]">
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0b1120] to-transparent z-10" />
