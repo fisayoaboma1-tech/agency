@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 export function WhatsAppFloat() {
   return (
     <motion.a
-      href="https://wa.me/6285691569538"
+      href="https://wa.me/6285216412782"
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, scale: 0.8 }}

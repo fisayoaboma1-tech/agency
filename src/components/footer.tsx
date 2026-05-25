@@ -31,13 +31,13 @@ const contactInfo = [
     icon: Phone,
     label: "Secondary",
     value: "+62 831 6169 8888",
-    href: "tel:+6283161698888",
+    href: "tel:+6285216412782",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "support@ptkbb.id",
-    href: "mailto:support@ptkbb.id",
+    value: "support@ptkonsultanberdikaribersama.id",
+    href: "mailto:support@ptkonsultanberdikaribersama.id",
   },
   {
     icon: MapPin,
@@ -138,7 +138,7 @@ export function Footer() {
               <ul className="space-y-4">
                 <li>
                   <a
-                    href="tel:+6283161698888"
+                    href="tel:+6285216412782"
                     className="flex items-start gap-3 group"
                   >
                     <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-400/20">
@@ -149,7 +149,7 @@ export function Footer() {
                         Primary Contact
                       </span>
                       <span className="text-[14px] text-gray-200 group-hover:text-white transition-colors">
-                        +62 831 6169 8888
+                        +62 852 1641 2782
                       </span>
                     </div>
                   </a>
@@ -174,7 +174,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="mailto:support@ptkbb.id"
+                    href="mailto:support@ptkonsultanberdikaribersama.id"
                     className="flex items-start gap-3 group"
                   >
                     <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 border border-amber-400/20">
@@ -185,7 +185,7 @@ export function Footer() {
                         Email
                       </span>
                       <span className="text-[14px] text-gray-400 group-hover:text-white transition-colors break-all">
-                        support@ptkbb.id
+                        support@ptkonsultanberdikaribersama.id
                       </span>
                     </div>
                   </a>
