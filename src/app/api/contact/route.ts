@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
+import nodemailer from "nodemailer";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const DATA_FILE = path.join(DATA_DIR, "messages.json");
+const CONTACT_EMAIL = "support@ptkonsultantberdikaribersama.id";
 
 interface ContactMessage {
   id: string;
@@ -39,6 +41,42 @@ async function readMessages(): Promise<ContactMessage[]> {
 async function writeMessages(messages: ContactMessage[]) {
   await ensureDataFile();
   await fs.writeFile(DATA_FILE, JSON.stringify(messages, null, 2), "utf-8");
+}
+
+async function sendContactEmail(message: ContactMessage) {
+  const host = process.env.SMTP_HOST?.trim();
+  const port = Number(process.env.SMTP_PORT || 465);
+  const user = process.env.SMTP_USER?.trim();
+  const password = process.env.SMTP_PASSWORD;
+  const recipient = process.env.CONTACT_TO_EMAIL?.trim() || CONTACT_EMAIL;
+
+  if (!host || !user || !password || !Number.isInteger(port) || port < 1 || port > 65535) {
+    throw new Error("SMTP settings are missing or invalid.");
+  }
+
+  const transporter = nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465,
+    requireTLS: port !== 465,
+    auth: { user, pass: password },
+  });
+
+  await transporter.sendMail({
+    from: { name: "KBB Website", address: user },
+    to: recipient,
+    replyTo: { name: message.name, address: message.email },
+    subject: `[KBB Website] New inquiry from ${message.name.replace(/[\r\n]+/g, " ")}`,
+    text: [
+      `Name: ${message.name}`,
+      `Email: ${message.email}`,
+      `Company: ${message.company || "Not provided"}`,
+      `Service: ${message.service || "Not specified"}`,
+      "",
+      "Message:",
+      message.message,
+    ].join("\n"),
+  });
 }
 
 export async function GET() {
@@ -82,11 +120,29 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, company, service, message } = body;
+    if (!body || typeof body !== "object") {
+      return NextResponse.json({ error: "Invalid form submission." }, { status: 400 });
+    }
 
-    if (!name || !email || !message) {
+    const name = typeof body.name === "string" ? body.name.trim() : "";
+    const email = typeof body.email === "string" ? body.email.trim() : "";
+    const company = typeof body.company === "string" ? body.company.trim() : "";
+    const service = typeof body.service === "string" ? body.service.trim() : "";
+    const message = typeof body.message === "string" ? body.message.trim() : "";
+
+    if (
+      !name ||
+      !email ||
+      !message ||
+      name.length > 120 ||
+      email.length > 254 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+      company.length > 160 ||
+      service.length > 120 ||
+      message.length > 5000
+    ) {
       return NextResponse.json(
-        { error: "Name, email, and message are required." },
+        { error: "Please provide a valid name, email, and message." },
         { status: 400 }
       );
     }
@@ -106,6 +162,18 @@ export async function POST(request: NextRequest) {
 
     messages.push(newMessage);
     await writeMessages(messages);
+
+    try {
+      await sendContactEmail(newMessage);
+    } catch (error) {
+      console.error("POST /api/contact email notification error:", error);
+      return NextResponse.json(
+        {
+          error: `Your message was saved, but we couldn't email our team. Please contact us directly at ${CONTACT_EMAIL}.`,
+        },
+        { status: 502 }
+      );
+    }
 
     return NextResponse.json({ success: true, message: newMessage }, { status: 201 });
   } catch (error) {
