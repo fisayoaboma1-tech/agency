@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -10,9 +9,7 @@ import {
   FileCheck,
   Globe,
   ShieldCheck,
-  Star,
   Users,
-  X,
 } from "lucide-react"
 import { StatsCounter } from "@/components/stats-counter"
 
@@ -107,30 +104,6 @@ const reasons = [
   },
 ]
 
-const testimonials = [
-  {
-    name: "Alexandre Dubois",
-    role: "CEO, EuroTech Manufacturing",
-    content:
-      "KBB made our company registration in Indonesia completely seamless. Their team handled everything from NIB to industry permits. We were operational in under 3 months.",
-    rating: 4.8,
-  },
-  {
-    name: "Sarah Chen",
-    role: "Head of APAC, GreenEnergy Corp",
-    content:
-      "The SNI certification process seemed daunting, but KBB's expertise made it straightforward. They guided us through every step of testing and compliance.",
-    rating: 4.5,
-  },
-  {
-    name: "Michael Torres",
-    role: "Director, Pacific Trade Group",
-    content:
-      "We needed import/export compliance support urgently. KBB responded within hours and had our documentation ready before the deadline. Highly professional.",
-    rating: 5,
-  },
-]
-
 const faqs = [
   {
     question: "How long does company registration in Indonesia take?",
@@ -184,19 +157,6 @@ function SectionHeading({
 }
 
 export default function HomePage() {
-  const [showReviewModal, setShowReviewModal] = React.useState(false)
-
-  React.useEffect(() => {
-    if (!showReviewModal) return
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setShowReviewModal(false)
-    }
-
-    document.addEventListener("keydown", handleKeyDown)
-    return () => document.removeEventListener("keydown", handleKeyDown)
-  }, [showReviewModal])
-
   return (
     <>
       <section className="home-hero-atmosphere relative isolate overflow-hidden border-b border-white/10">
@@ -373,68 +333,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="surface-soft-glow py-20 sm:py-24 lg:py-28">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
-          <SectionHeading
-            eyebrow="Client perspective"
-            title="Trusted through every step."
-            description="A selection of feedback from the businesses we have supported."
-          />
-          <div className="mt-11 grid gap-8 md:grid-cols-3 md:gap-0">
-            {testimonials.map((testimonial, index) => (
-              <article
-                key={testimonial.name}
-                className={`border-t border-white/15 py-6 md:px-7 md:first:pl-0 md:last:pr-0 ${
-                  index > 0 ? "md:border-l md:border-l-white/10" : ""
-                }`}
-              >
-                <div
-                  className="flex items-center gap-1 text-sky-300"
-                  aria-label={`${testimonial.rating} out of 5 stars`}
-                >
-                  {Array.from({ length: 5 }, (_, star) => (
-                    <Star
-                      key={star}
-                      aria-hidden="true"
-                      className={`size-3.5 ${
-                        star < Math.floor(testimonial.rating)
-                          ? "fill-amber-400 text-amber-400"
-                          : star === Math.floor(testimonial.rating) &&
-                              testimonial.rating % 1 >= 0.3
-                            ? "fill-amber-400/50 text-amber-400/50"
-                          : "text-slate-600"
-                      }`}
-                    />
-                  ))}
-                  <span className="ml-2 text-xs text-slate-400">
-                    {testimonial.rating.toFixed(1)}
-                  </span>
-                </div>
-                <blockquote className="mt-5 text-sm leading-7 text-slate-200/85">
-                  “{testimonial.content}”
-                </blockquote>
-                <div className="mt-6">
-                  <p className="text-sm font-medium text-white">
-                    {testimonial.name}
-                  </p>
-                  <p className="mt-1 text-xs text-slate-400">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-          <button
-            type="button"
-            onClick={() => setShowReviewModal(true)}
-            className="site-button-secondary mt-8 inline-flex items-center gap-2 px-4 text-sm"
-          >
-            <Star aria-hidden="true" className="size-4 text-amber-400" />
-            Leave a Review
-          </button>
-        </div>
-      </section>
-
       <section className="surface-ink border-y border-white/10 py-20 sm:py-24 lg:py-28">
         <div className="mx-auto max-w-3xl px-6 sm:px-10">
           <SectionHeading
@@ -501,49 +399,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {showReviewModal && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#070c15]/85 p-5 backdrop-blur-sm"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) setShowReviewModal(false)
-          }}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="review-dialog-title"
-            className="relative w-full max-w-md border border-white/15 bg-[#111827] p-7 sm:p-9"
-          >
-            <button
-              type="button"
-              aria-label="Close dialog"
-              onClick={() => setShowReviewModal(false)}
-              className="absolute right-5 top-5 p-1 text-slate-400 transition-colors hover:text-white"
-            >
-              <X aria-hidden="true" className="size-5" />
-            </button>
-            <p className="site-eyebrow">Client reviews</p>
-            <h2
-              id="review-dialog-title"
-              className="site-heading mt-4 text-2xl text-white"
-            >
-              Review access is reserved for our clients.
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-slate-300/75">
-              Please complete a service engagement with KBB first. We would
-              value your feedback afterward.
-            </p>
-            <Link
-              href="/contact"
-              onClick={() => setShowReviewModal(false)}
-              className="site-button mt-7 inline-flex items-center justify-center gap-2 px-4 text-sm font-medium"
-            >
-              Start a Service
-              <ArrowRight aria-hidden="true" className="size-4" />
-            </Link>
-          </div>
-        </div>
-      )}
     </>
   )
 }
